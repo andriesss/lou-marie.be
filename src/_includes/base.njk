@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <title>Lou-Marie fashion | Stijlvolle en betaalbare dameskleding in Pelt!</title>
+  <title>Lou-Marie fashion | {{ title }}</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,12 +12,12 @@
   <meta name="description" content="stijlvolle én betaalbare dameskleding">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="css/vendor.css">
+  <link rel="stylesheet" type="text/css" href="/css/vendor.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -182,13 +182,13 @@
                   <a class="nav-link" href="/">Start</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/verzenden.html">Verzenden</a>
+                  <a class="nav-link" href="/verzenden">Verzenden</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/retourneren.html">Retourneren</a>
+                  <a class="nav-link" href="/retourneren">Retourneren</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/contact.html">Contact en openingsuren</a>
+                  <a class="nav-link" href="/contact">Contact en openingsuren</a>
                 </li>
               </ul>
             </div>
@@ -198,124 +198,7 @@
     </div>
   </nav>
 
-  <section id="billboard" class="bg-light py-5">
-    <div class="container">
-      <div class="row justify-content-center">
-        <h1 class="section-title text-center mt-4" data-aos="fade-up">Lou-Marie fashion</h1>
-        <div class="col-md-6 text-center" data-aos="fade-up" data-aos-delay="300">
-          <p>Bij ons vind je stijlvolle en betaalbare dameskleding voor elke gelegenheid.
-            We posten regelmatig foto's van onze collectie op <a href="https://www.facebook.com/lmarie.fashion/">Facebook</a> en
-            <a href="https://www.instagram.com/loumarie.fashion/">Instagram</a>, dus volg ons om als eerste op de hoogte te zijn van nieuwtjes en trends!
-        </div>
-      </div>
-      <div class="row">
-        <div class="swiper main-swiper py-4" data-aos="fade-up" data-aos-delay="600">
-          <div class="swiper-wrapper d-flex border-animation-left">
-            <div class="swiper-slide">
-              <div class="banner-item image-zoom-effect">
-                <div class="image-holder">
-                  <img src="images/IMG_3592.jpeg" alt="product" class="img-fluid">
-                </div>
-                <div class="banner-content py-4">
-                  <h5 class="element-title text-uppercase responsive-heading">
-                    Tijdloze stijl
-                  </h5>
-                  <p class="responsive-paragraph">Onze collecties bieden elegantie en veelzijdigheid. Stukken die je gemakkelijk
-                    combineert en jarenlang mooi blijven.</p>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="banner-item image-zoom-effect">
-                <div class="image-holder">
-                  <img src="images/IMG_3655.jpeg" alt="product" class="img-fluid">
-                </div>
-                <div class="banner-content py-4">
-                  <h5 class="element-title text-uppercase responsive-heading">
-                    Subtiele luxe
-                  </h5>
-                  <p class="responsive-paragraph">Hoge kwaliteit met een vleugje klasse. Stijlvol, zonder overdaad, voor een verfijnde
-                    en zelfverzekerde uitstraling.</p>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="banner-item image-zoom-effect">
-                <div class="image-holder">
-                  <img src="images/IMG_3620.jpeg" alt="product" class="img-fluid">
-                </div>
-                <div class="banner-content py-4">
-                  <h5 class="element-title text-uppercase responsive-heading">
-                    Eenvoud met karakter
-                  </h5>
-                  <p class="responsive-paragraph">Minimalistisch design met opvallende details. Tijdloze stukken die spreken zonder
-                    ooit saai te worden.</p>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="banner-item image-zoom-effect">
-                <div class="image-holder">
-                  <a href="#">
-                    <img src="images/IMG_3602.jpeg" alt="product" class="img-fluid">
-                  </a>
-                </div>
-                <div class="banner-content py-4 responsive-heading">
-                  <h5 class="element-title text-uppercase">
-                    Aandacht voor detail
-                  </h5>
-                  <p class="responsive-paragraph">Van fijne afwerkingen tot mooie knoopsluitingen: elk item is zorgvuldig geselecteerd.</p>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="banner-item image-zoom-effect">
-                <div class="image-holder">
-                  <a href="#">
-                    <img src="images/IMG_3648.jpeg" alt="product" class="img-fluid">
-                  </a>
-                </div>
-                <div class="banner-content py-4">
-                  <h5 class="element-title text-uppercase responsive-heading">
-                    Modern en vrouwelijk
-                  </h5>
-                  <p class="responsive-paragraph">Een mix van moderne snits en vrouwelijke vormen. Perfect voor de vrouw die stijlvol
-                    en zelfverzekerd door het leven gaat.</p>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="banner-item image-zoom-effect">
-                <div class="image-holder">
-                  <a href="#">
-                    <img src="images/IMG_3640.jpeg" alt="product" class="img-fluid">
-                  </a>
-                </div>
-                <div class="banner-content py-4">
-                  <h5 class="element-title text-uppercase responsive-heading">
-                    Comfort en stijl
-                  </h5>
-                  <p class="responsive-paragraph">Onze kleding is ontworpen voor draagbaarheid en comfort, zonder in te boeten op een
-                    elegante uitstraling.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-        <div class="icon-arrow icon-arrow-left">
-          <svg width="50" height="50" viewBox="0 0 24 24">
-            <use xlink:href="#arrow-left"></use>
-          </svg>
-        </div>
-        <div class="icon-arrow icon-arrow-right">
-          <svg width="50" height="50" viewBox="0 0 24 24">
-            <use xlink:href="#arrow-right"></use>
-          </svg>
-        </div>
-      </div>
-    </div>
-  </section>
+  {{ content | safe }}
 
   <section class="features py-5">
     <div class="container">
@@ -371,7 +254,7 @@
         <div class="collection-item d-flex flex-wrap my-5">
           <div class="col-md-6 column-container">
             <div class="image-holder">
-              <img src="images/winkel.jpeg" alt="Interieur winkel" class="product-image img-fluid">
+              <img src="/images/winkel.jpeg" alt="Interieur winkel" class="product-image img-fluid">
             </div>
           </div>
           <div class="col-md-6 column-container bg-white">
@@ -384,7 +267,7 @@
                 toegankelijk voor mensen die minder goed ter been zijn. Maar geen zorgen, onze collectie is eenvoudig online te bestellen.
                 Stuur ons gewoon een persoonlijk bericht via Messenger of WhatsApp en wij voorzien je met plezier van één-op-één advies over
                 de items die je aanspreken. Zo geniet je vanuit huis van onze stijlvolle mode en persoonlijke service!</p>
-              <a href="/contact.html" class="btn btn-dark text-uppercase mt-3">Onze contactgegevens</a>
+              <a href="/contact" class="btn btn-dark text-uppercase mt-3">Onze contactgegevens</a>
             </div>
           </div>
         </div>
@@ -400,42 +283,42 @@
       <div class="col-6 col-sm-4 col-md-2">
         <div class="insta-item">
           <a href="https://www.facebook.com/lmarie.fashion/" target="_blank">
-            <img src="images/banner1.jpg" alt="Volg Lou-Marie fashion op Facebook" class="insta-image img-fluid lazy">
+            <img src="/images/banner1.jpg" alt="Volg Lou-Marie fashion op Facebook" class="insta-image img-fluid lazy">
           </a>
         </div>
       </div>
       <div class="col-6 col-sm-4 col-md-2">
         <div class="insta-item">
           <a href="https://www.facebook.com/lmarie.fashion/" target="_blank">
-            <img src="images/banner2.jpg" alt="Volg Lou-Marie fashion op Facebook" class="insta-image img-fluid lazy">
+            <img src="/images/banner2.jpg" alt="Volg Lou-Marie fashion op Facebook" class="insta-image img-fluid lazy">
           </a>
         </div>
       </div>
       <div class="col-6 col-sm-4 col-md-2">
         <div class="insta-item">
           <a href="https://www.facebook.com/lmarie.fashion/" target="_blank">
-            <img src="images/banner7.jpg" alt="Volg Lou-Marie fashion op Facebook" class="insta-image img-fluid lazy">
+            <img src="/images/banner7.jpg" alt="Volg Lou-Marie fashion op Facebook" class="insta-image img-fluid lazy">
           </a>
         </div>
       </div>
       <div class="col-6 col-sm-4 col-md-2">
         <div class="insta-item">
           <a href="https://www.facebook.com/lmarie.fashion/" target="_blank">
-            <img src="images/banner3.jpg" alt="Volg Lou-Marie fashion op Facebook" class="insta-image img-fluid lazy">
+            <img src="/images/banner3.jpg" alt="Volg Lou-Marie fashion op Facebook" class="insta-image img-fluid lazy">
           </a>
         </div>
       </div>
       <div class="col-6 col-sm-4 col-md-2">
         <div class="insta-item">
           <a href="https://www.facebook.com/lmarie.fashion/" target="_blank">
-            <img src="images/banner5.jpg" alt="Volg Lou-Marie fashion op Facebook" class="insta-image img-fluid lazy">
+            <img src="/images/banner5.jpg" alt="Volg Lou-Marie fashion op Facebook" class="insta-image img-fluid lazy">
           </a>
         </div>
       </div>
       <div class="col-6 col-sm-4 col-md-2">
         <div class="insta-item">
           <a href="https://www.facebook.com/lmarie.fashion/" target="_blank">
-            <img src="images/banner6.jpg" alt="Volg Lou-Marie fashion op Facebook" class="insta-image img-fluid lazy">
+            <img src="/images/banner6.jpg" alt="Volg Lou-Marie fashion op Facebook" class="insta-image img-fluid lazy">
           </a>
         </div>
       </div>
@@ -477,16 +360,16 @@
             <h5 class="widget-title text-uppercase mb-4">Help & Info</h5>
             <ul class="menu-list list-unstyled text-uppercase border-animation-left fs-6">
               <li class="menu-item">
-                <a href="/verzenden.html" class="item-anchor">Verzenden</a>
+                <a href="/verzenden" class="item-anchor">Verzenden</a>
               </li>
               <li class="menu-item">
-                <a href="/retourneren.html" class="item-anchor">Retourneren</a>
+                <a href="/retourneren" class="item-anchor">Retourneren</a>
               </li>
               <li class="menu-item">
-                <a href="/contact.html" class="item-anchor">Contact en openingsuren</a>
+                <a href="/contact" class="item-anchor">Contact en openingsuren</a>
               </li>
               <li class="menu-item">
-                <a href="/algemene-voorwaarden.html" class="item-anchor">Algemene voorwaarden</a>
+                <a href="/algemene-voorwaarden" class="item-anchor">Algemene voorwaarden</a>
               </li>
             </ul>
           </div>
@@ -498,7 +381,7 @@
               <a href="mailto:info@lou-marie.be" class="item-anchor">info@lou-marie.be</a>
             </p>
             <p>BTW: BE0849.767.213</p>
-            <p><a aria-label="Chat on WhatsApp" href="https://wa.me/+320456890694"><img alt="Chat on WhatsApp" src="images/WhatsAppButtonGreenLarge.svg" /></a></p>
+            <p><a aria-label="Chat on WhatsApp" href="https://wa.me/+320456890694"><img alt="Chat on WhatsApp" src="/images/WhatsAppButtonGreenLarge.svg" /></a></p>
           </div>
         </div>
       </div>
@@ -517,14 +400,14 @@
       </div>
     </div>
   </footer>
-  <script src="js/jquery.min.js"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/SmoothScroll.js"></script>
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/plugins.js"></script>
+  <script src="/js/SmoothScroll.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-  <script src="js/script.min.js"></script>
+  <script src="/js/script.min.js"></script>
 </body>
 
 </html>
