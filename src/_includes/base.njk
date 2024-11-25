@@ -354,44 +354,13 @@
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script src="/js/script.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.1.8/src/glowCookies.min.js"></script>
+  <script src="/js/cookies.js"></script>
   <script>
     glowCookies.start('nl', {
       style: 1,
       policyLink: 'https://lou-marie.be/privacy/'
     });
-
-    !function(f, b, e, v, n, t, s) {
-      if (f.fbq) return;
-      n = f.fbq = function() {
-      n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-    };
-      if (!f._fbq) f._fbq = n;
-      n.push = n;
-      n.loaded = !0;
-      n.version = '2.0';
-      n.queue = [];
-      t = b.createElement(e);
-      t.async = !0;
-      t.src = v;
-      s = b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t, s);
-    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('consent', 'revoke');
-      fbq('init', '976193544565465');
-      fbq('track', 'PageView');
-      {% displaycapture "trackers" %}
-
-    function handleConsent(hasConsent) {
-      fbq("consent", hasConsent ? "grant" : "revoke");
-    }
-
-    window.addEventListener('storage', function(event) {
-      if (event.key === 'GlowCookies') {
-        handleConsent(event.newValue === '1');
-      }
-    });
+    {% displaycapture "trackers" %}
   </script>
 </body>
 </html>
