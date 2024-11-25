@@ -56,7 +56,6 @@ layout: "base.njk"
 
 <script>
     document.getElementById('add-to-cart').addEventListener('click', function() {
-        console.log('yoooo');
         fbq('track', 'AddToCart', {
             content_ids: ['{{ id }}'],
         });
