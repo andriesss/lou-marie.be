@@ -81,7 +81,14 @@ class GlowCookies {
     }
 
     checkStatus() {
-        switch (localStorage.getItem("GlowCookies")) {
+        const cookies = localStorage.getItem("GlowCookies")
+        const event = new CustomEvent('cookie_consent', {
+            detail: { accepted: cookies === "1" }
+        });
+
+        window.dispatchEvent(event);
+
+        switch (cookies) {
             case "1":
                 this.openManageCookies();
                 this.activateTracking();
@@ -110,14 +117,22 @@ class GlowCookies {
         this.openManageCookies()
         this.activateTracking()
         this.addCustomScript()
-        fbq('consent', 'grant');
+        const event = new CustomEvent('cookie_consent', {
+           detail: { accepted: true }
+
+        });
+        window.dispatchEvent(event);
     }
 
     rejectCookies() {
         localStorage.setItem("GlowCookies", "0");
         this.openManageCookies();
         this.disableTracking();
-        fbq('consent', 'revoke');
+
+        const event = new CustomEvent('cookie_consent', {
+            detail: { accepted: false }
+        });
+        window.dispatchEvent(event);
     }
 
     activateTracking() {
@@ -149,6 +164,15 @@ class GlowCookies {
                                     fbq('consent', 'revoke');
                                     fbq('init', '${this.tracking.FacebookPixelCode}');
                                     fbq('track', 'PageView');
+                                    
+                                    function handleConsent(hasConsent) {
+                                        fbq("consent", hasConsent ? "grant" : "revoke");
+                                    }
+                                    
+                                    window.addEventListener("cookie_consent", (eventData) => {
+                                        const data = eventData.detail
+                                        handleConsent(data.accepted);
+                                    });
                                 `;
             document.head.appendChild(FacebookPixelData);
             let FacebookPixel = document.createElement('noscript');
