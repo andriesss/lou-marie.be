@@ -2,6 +2,22 @@
 layout: "base.njk"
 ---
 
+{% mycapture "head" %}
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:locale" content="nl_BE">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:url" content="https://lou-marie.be/producten/{{ id }}/">
+    <meta property="og:image" content="https://lou-marie.be{{ image }}">
+    <meta property="product:brand" content="Lou-Marie fashion">
+    <meta property="product:availability" content="in stock">
+    <meta property="product:condition" content="new">
+    <meta property="product:price:amount" content="{{ price }}">
+    <meta property="product:price:currency" content="EUR">
+    <meta property="product:retailer_item_id" content="{{ id }}">
+    <meta property="product:gender" content="female">
+    <meta property="product:age_group" content="adult">
+{% endmycapture %}
+
 <section id="billboard" class="bg-light py-5">
     <div class="container">
         <div class="row justify-content-center">
@@ -19,7 +35,7 @@ layout: "base.njk"
                 </div>
                 <div class="col-md-6 column-container bg-white">
                     <div class="collection-content p-5 m-0 m-md-5">
-                        <h3 class="element-title text-uppercase">{{ price }}</h3>
+                        <h3 class="element-title text-uppercase">{{ price }} EUR</h3>
                         {{ content | safe }}
                         <stripe-buy-button
                             buy-button-id="{{ stripeButtonId }}"
@@ -34,4 +50,3 @@ layout: "base.njk"
 </section>
 
 <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-
