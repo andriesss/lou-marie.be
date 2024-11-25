@@ -21,6 +21,7 @@ layout: "base.njk"
 {% mycapture "trackers" %}
     fbq('track', 'ViewContent', {
         content_ids: ['{{ id }}'],
+        content_type: 'product',
     });
 {% endmycapture %}
 
