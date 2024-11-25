@@ -362,6 +362,10 @@
       facebookPixel: '976193544565465',
       policyLink: 'https://lou-marie.be/privacy/'
     });
+    if (localStorage.getItem('GlowCookies') === '1') {
+      console.log('GlowCookies is set to 1');
+      {% displaycapture "trackers" %}
+    }
   </script>
 </body>
 </html>

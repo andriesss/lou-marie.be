@@ -18,6 +18,12 @@ layout: "base.njk"
     <meta property="product:age_group" content="adult">
 {% endmycapture %}
 
+{% mycapture "trackers" %}
+    fbq('track', 'ViewContent', {
+        content_ids: ['{{ id }}'],
+    });
+{% endmycapture %}
+
 <section id="billboard" class="bg-light py-5">
     <div class="container">
         <div class="row justify-content-center">
@@ -37,11 +43,10 @@ layout: "base.njk"
                     <div class="collection-content p-5 m-0 m-md-5">
                         <h3 class="element-title text-uppercase">{{ price }} EUR</h3>
                         {{ content | safe }}
-                        <stripe-buy-button
-                            buy-button-id="{{ stripeButtonId }}"
-                            publishable-key="pk_live_51QOzcVCrIr0CmQ1yNGPCELpBzUl5Wjdnc5no2Sg9MTTGQ61DE5I7wvwACvgwGWWEwqZ15ts6fJWiWP28tGjTSTdK00nuEggoqn"
-                        >
-                        </stripe-buy-button>
+
+                        <a id="add-to-cart" target="_blank" href="{{ stripeButton }}" class="btn btn-dark text-uppercase mt-4">
+                            Dit product bestellen
+                        </a>
                     </div>
                 </div>
             </div>
@@ -49,4 +54,11 @@ layout: "base.njk"
     </div>
 </section>
 
-<script async src="https://js.stripe.com/v3/buy-button.js"></script>
+<script>
+    document.getElementById('add-to-cart').addEventListener('click', function() {
+        console.log('yoooo');
+        fbq('track', 'AddToCart', {
+            content_ids: ['{{ id }}'],
+        });
+    });
+</script>
