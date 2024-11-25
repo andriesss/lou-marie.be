@@ -101,6 +101,9 @@
                   <a class="nav-link" href="/">Start</a>
                 </li>
                 <li class="nav-item">
+                  <a class="nav-link" href="/producten">Producten</a>
+                </li>
+                <li class="nav-item">
                   <a class="nav-link" href="/verzenden">Verzenden</a>
                 </li>
                 <li class="nav-item">
@@ -253,7 +256,7 @@
   <footer id="footer" class="mt-5">
     <div class="container">
       <div class="row d-flex flex-wrap justify-content-between py-5">
-        <div class="col-md-3 col-sm-6">
+        <div class="col-md-3 col-sm-3">
           <div class="footer-menu footer-menu-001">
             <div class="footer-intro mb-4">
               <h5 class="widget-title text-uppercase mb-4">Lou-Marie fashion</h5>
@@ -281,6 +284,22 @@
           </div>
         </div>
         <div class="col-md-3 col-sm-6">
+          <div class="footer-menu footer-menu-002">
+            <h5 class="widget-title text-uppercase mb-4">Snelle links</h5>
+            <ul class="menu-list list-unstyled text-uppercase border-animation-left fs-6">
+              <li class="menu-item">
+                <a href="/" class="item-anchor">Start</a>
+              </li>
+              <li class="menu-item">
+                <a href="/producten" class="item-anchor">Producten</a>
+              </li>
+              <li class="menu-item">
+                <a href="/contact" class="item-anchor">Contact en openingsuren</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
           <div class="footer-menu footer-menu-003">
             <h5 class="widget-title text-uppercase mb-4">Help & Info</h5>
             <ul class="menu-list list-unstyled text-uppercase border-animation-left fs-6">
@@ -291,10 +310,10 @@
                 <a href="/retourneren" class="item-anchor">Retourneren</a>
               </li>
               <li class="menu-item">
-                <a href="/contact" class="item-anchor">Contact en openingsuren</a>
+                <a href="/faq" class="item-anchor">Veelgestelde vragen</a>
               </li>
               <li class="menu-item">
-                <a href="/faq" class="item-anchor">Veelgestelde vragen</a>
+                <a href="/privacy" class="item-anchor">Privacy beleid</a>
               </li>
               <li class="menu-item">
                 <a href="/algemene-voorwaarden" class="item-anchor">Algemene voorwaarden</a>
@@ -331,6 +350,7 @@
       </div>
     </div>
   </footer>
+  <div id="cookie-banner"></div>
   <script src="/js/jquery.min.js"></script>
   <script src="/js/plugins.js"></script>
   <script src="/js/SmoothScroll.js"></script>
@@ -339,5 +359,14 @@
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script src="/js/script.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.1.8/src/glowCookies.min.js"></script>
+  <script>
+    glowCookies.start('nl', {
+      style: 1,
+      facebookPixel: '976193544565465',
+      policyLink: 'https://lou-marie.be/privacy/'
+    });
+  </script>
 </body>
 </html>
