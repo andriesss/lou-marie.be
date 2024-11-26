@@ -38,7 +38,7 @@ layout: "base.njk"
                         <h3 class="element-title text-uppercase">{{ price | currency }}</h3>
                         {{ content | safe }}
 
-                        <h5>Beschikbaar in maten:</h5>
+                        <h5>Beschikbaar in maten</h5>
                         <ul>
                             {% for size in sizes %}
                                 <li>{{ size | product_size }}</li>
