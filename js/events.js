@@ -1,19 +1,24 @@
-function trackEvent(category, payload, retries = 3) {
-    if (localStorage.getItem("GlowCookies") !== "1") {
-        return;
-    }
+let queue = []
+let isLoaded = false
 
-    try {
-        window.fbq('track', category, payload);
-    } catch (err) {
-        if (retries > 0) {
-            setTimeout(function () {
-                trackEvent(category, payload, retries - 1);
-                },
-                500
-            );
-        }
+function sendEvent (category, payload) {
+    window.fbq('track', category, payload);
+}
+
+function trackerLoaded() {
+    isLoaded = true
+    while (queue.length) {
+        const { category, payload } = queue.shift()
+        sendEvent(category, payload)
     }
+}
+
+function trackEvent(category, payload) {
+    if (!window.fbq || !isLoaded) {
+        queue.push({ category, payload })
+        return
+    }
+    sendEvent(category, payload)
 }
 
 function onAddToCart(id) {

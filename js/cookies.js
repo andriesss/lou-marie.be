@@ -159,6 +159,7 @@ class GlowCookies {
                                     if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
                                     n.queue=[];t=b.createElement(e);t.async=!0;
                                     t.src=v;s=b.getElementsByTagName(e)[0];
+                                    t.onload = function(){trackerLoaded()}
                                     s.parentNode.insertBefore(t,s)}(window, document,'script',
                                     'https://connect.facebook.net/en_US/fbevents.js');
                                     fbq('consent', 'revoke');
@@ -176,10 +177,13 @@ class GlowCookies {
                                 `;
             document.head.appendChild(FacebookPixelData);
             let FacebookPixel = document.createElement('noscript');
+
+
             FacebookPixel.setAttribute('height', `1`);
             FacebookPixel.setAttribute('width', `1`);
             FacebookPixel.setAttribute('style', `display:none`);
             FacebookPixel.setAttribute('src', `https://www.facebook.com/tr?id=${this.tracking.FacebookPixelCode}&ev=PageView&noscript=1`);
+
             document.head.appendChild(FacebookPixel);
         }
 
