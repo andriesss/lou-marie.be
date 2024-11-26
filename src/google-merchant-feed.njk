@@ -13,6 +13,8 @@ eleventyExcludeFromCollections: true
         <item>
             <g:id>{{ product.data.id }}_{{ size }}</g:id>
             <g:item_group_id>{{ product.data.id }}</g:item_group_id>
+            <g:size>{{ size }}</g:size>
+            <g:size_system>EU</g:size_system>
             <g:title>{{ product.data.title }}</g:title>
             <g:description>{{ product.data.description }}</g:description>
             <g:link>https://lou-marie.be/kleding/{{ product.data.id }}/</g:link>
@@ -26,7 +28,7 @@ eleventyExcludeFromCollections: true
             <g:shipping>
                 <g:country>BE</g:country>
                 <g:service>Standaard</g:service>
-                <g:price>6,50 EUR</g:price>
+                <g:price>6.50 EUR</g:price>
             </g:shipping>
         </item>
         {%- endfor -%}
