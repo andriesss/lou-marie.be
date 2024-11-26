@@ -15,6 +15,7 @@ eleventyExcludeFromCollections: true
             <g:item_group_id>{{ product.data.id }}</g:item_group_id>
             <g:size>{{ size }}</g:size>
             <g:color>{{ product.data.googleProductColor }}</g:color>
+            <g:material>{{ product.data.composition | material }}</g:material>
             <g:size_system>EU</g:size_system>
             <g:title>{{ product.data.title }}</g:title>
             <g:description>{{ product.data.description }}</g:description>

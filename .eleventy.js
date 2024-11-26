@@ -32,6 +32,21 @@ module.exports = function (eleventyConfig) {
         }).format(value);
     });
 
+    const sizeMap = {
+        S: 'S (36/38)',
+        M: 'M (38/40)',
+        L: 'L (40/42)',
+        OSFA: 'Taille unique',
+    };
+
+    eleventyConfig.addFilter("product_size", function(value) {
+        return sizeMap[value] || value;
+    });
+
+    eleventyConfig.addFilter("material", function(value) {
+        return value.map(item => item.replace(/(.+)(:.+)/g, '$1').toLowerCase()).join('/');
+    });
+
     return {
         dir: {
             input: "src",

@@ -38,6 +38,19 @@ layout: "base.njk"
                         <h3 class="element-title text-uppercase">{{ price | currency }}</h3>
                         {{ content | safe }}
 
+                        <h5>Beschikbaar in maten:</h5>
+                        <ul>
+                            {% for size in sizes %}
+                                <li>{{ size | product_size }}</li>
+                            {% endfor %}
+                        </ul>
+
+                        <h5>Samenstelling</h5>
+                        <ul>
+                            {% for item in composition %}
+                                <li>{{ item }}</li>
+                            {% endfor %}
+                        </ul>
                         <a id="add-to-cart"
                            target="_blank"
                            href="{{ stripeButton }}"
