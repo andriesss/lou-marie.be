@@ -24,6 +24,10 @@ module.exports = function (eleventyConfig) {
         return '';
     });
 
+    eleventyConfig.addFilter("currency", function(value) {
+        return new Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR' }).format(value);
+    });
+
     return {
         dir: {
             input: "src",

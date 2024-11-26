@@ -1,0 +1,35 @@
+---
+permalink: /google-merchant-feed.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0"?>
+<rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
+    <channel>
+        <title>Lou-Marie fashion</title>
+        <link>https://store.google.com</link>
+        <description>Bij ons vind je stijlvolle en betaalbare dameskleding voor elke gelegenheid.</description>
+        {%- for product in collections.products -%}
+        {%- for size in product.data.sizes -%}
+        <item>
+            <g:id>{{ product.data.id }}{{ size | slugify }}</g:id>
+            <g:item_group_id>{{ product.data.id }}</g:item_group_id>
+            <g:title>{{ product.data.title }}</g:title>
+            <g:description>{{ product.data.description }}</g:description>
+            <g:link>https://lou-marie.be/kleding/{{ product.data.id }}/</g:link>
+            <g:image_link>https://lou-marie.be{{ product.data.image }}</g:image_link>
+            <g:condition>new</g:condition>
+            <g:availability>in stock</g:availability>
+            <g:price>{{ product.data.price | currency }}</g:price>
+            <g:age_group>adult</g:age_group>
+            <g:gender>female</g:gender>
+            <g:google_product_category>1604</g:google_product_category>
+            <g:shipping>
+                <g:country>BE</g:country>
+                <g:service>Standaard</g:service>
+                <g:price>6,50 EUR</g:price>
+            </g:shipping>
+        </item>
+        {%- endfor -%}
+        {%- endfor -%}
+    </channel>
+</rss>
