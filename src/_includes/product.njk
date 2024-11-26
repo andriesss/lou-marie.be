@@ -35,7 +35,7 @@ layout: "base.njk"
                 </div>
                 <div class="col-md-6 column-container bg-white">
                     <div class="collection-content p-5 m-0 m-md-5">
-                        <h3 class="element-title text-uppercase">{{ price }} EUR</h3>
+                        <h3 class="element-title text-uppercase">{{ price | currency }}</h3>
                         {{ content | safe }}
 
                         <a id="add-to-cart"
