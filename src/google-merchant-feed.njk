@@ -22,7 +22,7 @@ eleventyExcludeFromCollections: true
             <g:price>{{ product.data.price | currency }}</g:price>
             <g:age_group>adult</g:age_group>
             <g:gender>female</g:gender>
-            <g:google_product_category>1604</g:google_product_category>
+            <g:google_product_category>{{ product.data.googleProductCategory }}</g:google_product_category>
             <g:shipping>
                 <g:country>BE</g:country>
                 <g:service>Standaard</g:service>
