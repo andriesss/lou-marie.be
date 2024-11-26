@@ -11,7 +11,7 @@ eleventyExcludeFromCollections: true
         {%- for product in collections.products -%}
         {%- for size in product.data.sizes -%}
         <item>
-            <g:id>{{ product.data.id }}{{ size | slugify }}</g:id>
+            <g:id>{{ product.data.id }}_{{ size }}</g:id>
             <g:item_group_id>{{ product.data.id }}</g:item_group_id>
             <g:title>{{ product.data.title }}</g:title>
             <g:description>{{ product.data.description }}</g:description>
