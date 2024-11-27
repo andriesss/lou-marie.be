@@ -1567,3 +1567,10 @@ a.btn-link.text-light:after {
 .overlay:hover {
   background-color: rgba(0, 0, 0, 0); /* Optional for a semi-transparent overlay effect */
 }
+
+#add-to-cart {
+  z-index: 1;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+}

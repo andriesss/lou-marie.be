@@ -138,6 +138,7 @@
 
   {{ content | safe }}
 
+  {% if not hideSellingPoints %}
   <section class="features py-5">
     <div class="container">
       <div class="row">
@@ -187,7 +188,9 @@
       </div>
     </div>
   </section>
+  {% endif %}
 
+  {% if not hideStoreInfo %}
   <section class="collection bg-light position-relative py-5">
     <div class="container">
       <div class="row">
@@ -215,7 +218,9 @@
       </div>
     </div>
   </section>
+  {% endif %}
 
+  {% if not hidePictureBanner %}
   <section class="instagram position-relative">
     <div class="d-flex justify-content-center w-100 position-absolute bottom-0 z-1">
       <a href="https://www.facebook.com/lmarie.fashion/" class="btn btn-dark px-5">Volg ons op Facebook</a>
@@ -265,6 +270,7 @@
       </div>
     </div>
   </section>
+  {% endif %}
 
   <footer id="footer" class="mt-5">
     <div class="container">

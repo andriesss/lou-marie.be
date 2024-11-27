@@ -1,5 +1,8 @@
 ---
 layout: "base.njk"
+hideSellingPoints: true
+hideStoreInfo: true
+hidePictureBanner: true
 ---
 
 {% mycapture "head" %}
@@ -54,7 +57,7 @@ layout: "base.njk"
                         <a id="add-to-cart"
                            target="_blank"
                            href="{{ stripeButton }}"
-                           class="btn btn-dark text-uppercase mt-4"
+                           class="btn btn-success text-uppercase mt-4"
                            onclick="onAddToCart('{{ id }}')">
                             Dit product bestellen
                         </a>
