@@ -1574,3 +1574,9 @@ a.btn-link.text-light:after {
   font-size: 1rem;
   border-radius: 5px;
 }
+
+.section-title {
+  font-size: 2rem;
+  line-height: 1.2;
+  word-wrap: break-word;
+}
