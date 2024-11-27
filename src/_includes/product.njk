@@ -3,22 +3,22 @@ layout: "base.njk"
 ---
 
 {% mycapture "head" %}
-<meta property="og:title" content="{{ title }}">
-<meta property="og:locale" content="nl_BE">
-<meta property="og:description" content="{{ description }}">
-<meta property="og:url" content="https://lou-marie.be/kleding/{{ id }}/">
-<meta property="og:image" content="https://lou-marie.be{{ image }}">
-<meta property="product:brand" content="Lou-Marie fashion">
-<meta property="product:availability" content="in stock">
-<meta property="product:condition" content="new">
-<meta property="product:price:amount" content="{{ price }}">
-<meta property="product:price:currency" content="EUR">
-<meta property="product:retailer_item_id" content="{{ id }}">
-<meta property="product:gender" content="female">
-<meta property="product:age_group" content="adult">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:locale" content="nl_BE">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:url" content="https://lou-marie.be/kleding/{{ id }}/">
+    <meta property="og:image" content="https://lou-marie.be{{ image }}">
+    <meta property="product:brand" content="Lou-Marie fashion">
+    <meta property="product:availability" content="in stock">
+    <meta property="product:condition" content="new">
+    <meta property="product:price:amount" content="{{ price }}">
+    <meta property="product:price:currency" content="EUR">
+    <meta property="product:retailer_item_id" content="{{ id }}">
+    <meta property="product:gender" content="female">
+    <meta property="product:age_group" content="adult">
 {% endmycapture %}
 
-<section id="billboard" class="bg-light py-5">
+<section class="bg-light py-5">
     <div class="container">
         <div class="row justify-content-center">
             <h1 class="section-title text-center mt-4" data-aos="fade-up">{{ title }}</h1>
@@ -65,9 +65,27 @@ layout: "base.njk"
     </div>
 </section>
 
+<section id="new-arrival" class="new-arrival product-carousel py-5 position-relative overflow-hidden">
+    <div class="container">
+        <div class="swiper product-swiper open-up" data-aos="zoom-out">
+            <div class="swiper-wrapper d-flex">
+                {% for image in extraImages %}
+                    <div class="swiper-slide">
+                        <div class="product-item image-zoom-effect link-effect">
+                            <div class="image-holder position-relative">
+                                <img src="{{ image }}" alt="{{ title }}" class="product-image img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
 {% mycapture "trackers" %}
     trackEvent('ViewContent', {
-        content_ids: ['{{ id }}'],
-        content_type: 'product',
+    content_ids: ['{{ id }}'],
+    content_type: 'product',
     });
 {% endmycapture %}
