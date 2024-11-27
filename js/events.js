@@ -1,31 +1,54 @@
 let queue = []
-let isLoaded = false
+let hasTrackerLoaded = false
+let hasConsent = false
 
-function sendEvent(category, payload) {
-    window.fbq('track', category, payload);
-}
-
-function trackerLoaded() {
-    isLoaded = true
-    while (queue.length) {
-        const {category, payload} = queue.shift()
-        sendEvent(category, payload)
-    }
+function sendFBQEvent(command, category, payload) {
+    window.fbq(command, category, payload);
 }
 
 function trackEvent(category, payload) {
-    if (!window.fbq || !isLoaded) {
+    if (!hasTrackerLoaded || !hasConsent || !window.fbq) {
         queue.push({category, payload})
         return
     }
-    sendEvent(category, payload)
+
+    sendFBQEvent(category, payload)
 }
 
 function onAddToCart(id) {
-    trackEvent('AddToCart', {
+    trackEvent('track', 'AddToCart', {
         content_ids: [id],
     });
-    trackEvent('InitiateCheckout', {
+    trackEvent('track', 'InitiateCheckout', {
         content_ids: [id],
     });
 }
+
+function trackerLoaded() {
+    trackerLoaded = true;
+    while (queue.length) {
+        const {category, payload} = queue.shift()
+        sendFBQEvent(category, payload)
+    }
+}
+
+function handleConsent(hasConsent) {
+    if (!hasConsent) {
+        return;
+    }
+
+    console.info("Consent granted");
+    trackEvent("consent", hasConsent ? "grant" : "revoke");
+
+    gtag('consent', 'update', {
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'ad_storage': 'denied',
+        'analytics_storage': 'granted'
+    });
+}
+
+window.addEventListener("cookie_consent", (eventData) => {
+    const data = eventData.detail
+    handleConsent(data.accepted);
+});

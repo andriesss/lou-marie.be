@@ -165,15 +165,6 @@ class GlowCookies {
                                     fbq('consent', 'revoke');
                                     fbq('init', '${this.tracking.FacebookPixelCode}');
                                     fbq('track', 'PageView');
-                                    
-                                    function handleConsent(hasConsent) {
-                                        fbq("consent", hasConsent ? "grant" : "revoke");
-                                    }
-                                    
-                                    window.addEventListener("cookie_consent", (eventData) => {
-                                        const data = eventData.detail
-                                        handleConsent(data.accepted);
-                                    });
                                 `;
             document.head.appendChild(FacebookPixelData);
             let FacebookPixel = document.createElement('noscript');

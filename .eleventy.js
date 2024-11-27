@@ -47,6 +47,12 @@ module.exports = function (eleventyConfig) {
         return value.map(item => item.replace(/(.+)(:.+)/g, '$1').toLowerCase()).join('/');
     });
 
+    eleventyConfig.addFilter("randomOrder", (arr) => {
+        return arr.sort(() => {
+            return 0.5 - Math.random();
+        });
+    });
+
     return {
         dir: {
             input: "src",
