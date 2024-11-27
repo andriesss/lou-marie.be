@@ -15,12 +15,14 @@ description: >
                 <div class="post-meta text-uppercase my-3">
                     <span class="post-category"><span class="meta-date">{{ postDate }}</span></span>
                 </div>
-                <h1 class="post-title text-uppercase">
+                <h1 class="section-title text-center mt-4" data-aos="fade-up">
                     {{ title }}
                 </h1>
                 <nav class="breadcrumb justify-content-center">
                     <a class="breadcrumb-item" href="/">Start</a>
-                    <span class="breadcrumb-item active" aria-current="page">Blog</span>
+                    <span class="breadcrumb-item active" aria-current="page">
+                        <a class="breadcrumb-item" href="/blog">Blog</a>
+                    </span>
                 </nav>
                 <p>{{ description }}</p>
             </div>

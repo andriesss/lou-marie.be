@@ -10,7 +10,13 @@ hidePictureBanner: true
     <div class="container">
         <div class="row">
             <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
-                <h1 class="page-title text-uppercase">Lou-Marie fashion blog</h1>
+                <h1 class="section-title text-center mt-4" data-aos="fade-up">
+                    Lou-Marie fashion blog
+                </h1>
+                <div class="col-md-6 text-center" data-aos="fade-up" data-aos-delay="300">
+                <p>Hier delen we alles wat je nodig hebt om stijlvol en met vertrouwen door het seizoen te gaan.
+                    Van de nieuwste trends in damesmode tot handige tips voor een geslaagde look</p>
+                </div>
             </div>
         </div>
     </div>
@@ -31,10 +37,10 @@ hidePictureBanner: true
                         <div class="post-meta text-uppercase mt-5">
                             <span class="meta-date">{{ post.data.postDate }}</span>
                         </div>
-                        <h2 class="post-title text-uppercase">
+                        <h1 class="section-title text-center mt-4">
                             <a href="{{ post.url }}">{{ post.data.title }}</a>
-                        </h2>
-                        <p>{{ post.data.description }}</p>
+                        </h1>
+                        <p data-aos="fade-up">{{ post.data.description }}</p>
                     </div>
                 </article>
                 {%- endfor -%}
