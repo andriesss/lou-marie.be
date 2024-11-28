@@ -21,10 +21,14 @@ slides:
     image: "/images/products/0035_1.jpg"
 ---
 
+{% mycapture "head" %}
+  <meta property="og:image" content="https://lou-marie.be/images/logo.png">
+{% endmycapture %}
+
 <section id="billboard" class="bg-light py-5">
   <div class="container">
     <div class="row justify-content-center">
-      <h1 class="section-title text-center mt-4" data-aos="fade-up">Lou-Marie fashion</h1>
+      <h1 class="section-title text-center mt-4">Lou-Marie fashion</h1>
       <div class="col-md-6 text-center" data-aos="fade-up" data-aos-delay="300">
         <p>Bij ons vind je stijlvolle en betaalbare dameskleding voor elke gelegenheid.
           We posten regelmatig foto's van onze collectie op <a href="https://www.facebook.com/lmarie.fashion/">Facebook</a> en
@@ -45,7 +49,7 @@ slides:
           <div class="swiper-slide">
             <div class="banner-item image-zoom-effect">
               <div class="image-holder">
-                <img src="{{ slide.image }}" alt="{{ slide.title }}" class="img-fluid">
+                <img src="{{ slide.image }}" alt="{{ slide.title }}" class="img-fluid" loading="lazy">
               </div>
               <div class="banner-content py-4">
                 <h5 class="element-title text-uppercase responsive-heading">
