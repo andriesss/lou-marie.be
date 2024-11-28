@@ -15,13 +15,13 @@ hidePictureBanner: true
 <section id="billboard" class="bg-light py-5">
     <div class="container">
         <div class="row justify-content-center">
-            <h1 class="section-title text-center mt-4" data-aos="fade-up">Onze kleding</h1>
-            <div class="col-md-6 text-center" data-aos="fade-up" data-aos-delay="300">
+            <h1 class="section-title text-center mt-4">Onze kleding</h1>
+            <div class="col-md-6 text-center">
                 <p>Hier vind je een kleine greep uit ons aanbod dat we ook online beschikbaar stellen. Onze volledige
                     collectie kun je bekijken op onze social media kanalen.</p>
             </div>
         </div>
-        <div class="row" data-aos="fade-up">
+        <div class="row">
             {%- for post in collections.products | randomOrder -%}
             <div class="col-md-4">
                 <article class="post-item">
