@@ -4,6 +4,7 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy("css");
     eleventyConfig.addPassthroughCopy("browserconfig.xml");
     eleventyConfig.addPassthroughCopy("site.webmanifest");
+    eleventyConfig.addPassthroughCopy("src/robots.txt");
 
     let _CAPTURES;
     eleventyConfig.on('beforeBuild', () => {
