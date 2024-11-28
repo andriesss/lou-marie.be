@@ -15,12 +15,26 @@ function trackEvent(category, payload) {
     sendFBQEvent(category, payload)
 }
 
-function onAddToCart(id) {
+function onAddToCart(id, title, price) {
     trackEvent('track', 'AddToCart', {
         content_ids: [id],
     });
+
     trackEvent('track', 'InitiateCheckout', {
         content_ids: [id],
+    });
+
+    gtag("event", "begin_checkout", {
+        currency: "EUR",
+        value: price,
+        items: [
+            {
+                item_id: id,
+                item_name: title,
+                price: price,
+                quantity: 1,
+            }
+        ]
     });
 }
 

@@ -53,6 +53,10 @@ module.exports = function (eleventyConfig) {
         });
     });
 
+    eleventyConfig.addFilter("fullSlug", (inputPath) => {
+        return inputPath.split('/').pop().replace(/\.[^/.]+$/, ""); // Remove extension
+    });
+
     return {
         dir: {
             input: "src",

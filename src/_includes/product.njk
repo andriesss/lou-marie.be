@@ -6,10 +6,6 @@ hidePictureBanner: true
 ---
 
 {% mycapture "head" %}
-    <meta property="og:title" content="{{ title }}">
-    <meta property="og:locale" content="nl_BE">
-    <meta property="og:description" content="{{ description }}">
-    <meta property="og:url" content="https://lou-marie.be/kleding/{{ id }}/">
     <meta property="og:image" content="https://lou-marie.be{{ image }}">
     <meta property="product:brand" content="Lou-Marie fashion">
     <meta property="product:availability" content="in stock">
@@ -58,7 +54,7 @@ hidePictureBanner: true
                            target="_blank"
                            href="{{ stripeButton }}"
                            class="btn btn-success text-uppercase mt-4"
-                           onclick="onAddToCart('{{ id }}')">
+                           onclick="onAddToCart('{{ id }}', '{{ title }}', {{ price }})">
                             Dit product bestellen
                         </a>
                     </div>
@@ -87,8 +83,23 @@ hidePictureBanner: true
 </section>
 
 {% mycapture "trackers" %}
-    trackEvent('ViewContent', {
-    content_ids: ['{{ id }}'],
-    content_type: 'product',
+    trackEvent('track', 'ViewContent', {
+        content_ids: ['{{ id }}'],
+        content_type: 'product',
     });
 {% endmycapture %}
+
+<script>
+    gtag("event", "view_item", {
+        currency: "EUR",
+        value: {{ price }},
+        items: [
+            {
+                item_id: "{{ id }}",
+                item_name: "{{ title }}",
+                price: {{ price }},
+                quantity: 1,
+            }
+        ]
+    });
+</script>

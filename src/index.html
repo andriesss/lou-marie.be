@@ -1,6 +1,24 @@
 ---
-title: Stijlvolle en betaalbare dameskleding in Pelt!
+title: "Stijlvolle en betaalbare dameskleding"
+description: "Lou-Marie fashion in Pelt: stijlvolle, betaalbare dameskleding. Ontdek onze collectie, winkelinfo en shop eenvoudig online!"
+keywords: "Lou-Marie fashion, damesmode, stijlvolle kleding, betaalbare kleding, modetrends, vrouwenkleding, online boetiek"
 layout: "base.njk"
+slides:
+  - title: "Tijdloze stijl"
+    description: "Onze collecties bieden elegantie en veelzijdigheid. Stukken die je gemakkelijk combineert en jarenlang mooi blijven."
+    image: "/images/products/0039_1.jpg"
+  - title: "Subtiele luxe"
+    description: "Hoge kwaliteit met een vleugje klasse. Stijlvol, zonder overdaad, voor een verfijnde en zelfverzekerde uitstraling."
+    image: "/images/products/0032_1.jpg"
+  - title: "Eenvoud met karakter"
+    description: "Eenvoudig design met opvallende details. Tijdloze stukken die spreken zonder ooit saai te worden."
+    image: "/images/products/0037_1.jpg"
+  - title: "Aandacht voor detail"
+    description: "Van fijne afwerkingen tot mooie knoopsluitingen: elk item is zorgvuldig geselecteerd."
+    image: "/images/products/0045_1.jpg"
+  - title: "Modern en vrouwelijk"
+    description: "Een mix van moderne snits en vrouwelijke vormen. Perfect voor de vrouw die stijlvol en zelfverzekerd door het leven gaat."
+    image: "/images/products/0035_1.jpg"
 ---
 
 <section id="billboard" class="bg-light py-5">
@@ -23,98 +41,21 @@ layout: "base.njk"
     <div class="row">
       <div class="swiper main-swiper py-4" data-aos="fade-up" data-aos-delay="600">
         <div class="swiper-wrapper d-flex border-animation-left">
+          {%- for slide in slides -%}
           <div class="swiper-slide">
             <div class="banner-item image-zoom-effect">
               <div class="image-holder">
-                <img src="/images/products/0039_1.jpg" alt="product" class="img-fluid">
+                <img src="{{ slide.image }}" alt="{{ slide.title }}" class="img-fluid">
               </div>
               <div class="banner-content py-4">
                 <h5 class="element-title text-uppercase responsive-heading">
-                  Tijdloze stijl
+                  {{ slide.title }}
                 </h5>
-                <p class="responsive-paragraph">Onze collecties bieden elegantie en veelzijdigheid. Stukken die je
-                  gemakkelijk combineert en jarenlang mooi blijven.</p>
+                <p class="responsive-paragraph">{{ slide.description }}</p>
               </div>
             </div>
           </div>
-          <div class="swiper-slide">
-            <div class="banner-item image-zoom-effect">
-              <div class="image-holder">
-                <img src="/images/IMG_3655.jpeg" alt="product" class="img-fluid">
-              </div>
-              <div class="banner-content py-4">
-                <h5 class="element-title text-uppercase responsive-heading">
-                  Subtiele luxe
-                </h5>
-                <p class="responsive-paragraph">Hoge kwaliteit met een vleugje klasse. Stijlvol, zonder overdaad,
-                  voor een verfijnde en zelfverzekerde uitstraling.</p>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="banner-item image-zoom-effect">
-              <div class="image-holder">
-                <img src="/images/IMG_3620.jpeg" alt="product" class="img-fluid">
-              </div>
-              <div class="banner-content py-4">
-                <h5 class="element-title text-uppercase responsive-heading">
-                  Eenvoud met karakter
-                </h5>
-                <p class="responsive-paragraph">Minimalistisch design met opvallende details. Tijdloze stukken die
-                  spreken zonder ooit saai te worden.</p>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="banner-item image-zoom-effect">
-              <div class="image-holder">
-                <a href="#">
-                  <img src="/images/IMG_3602.jpeg" alt="product" class="img-fluid">
-                </a>
-              </div>
-              <div class="banner-content py-4 responsive-heading">
-                <h5 class="element-title text-uppercase">
-                  Aandacht voor detail
-                </h5>
-                <p class="responsive-paragraph">Van fijne afwerkingen tot mooie knoopsluitingen: elk item is
-                  zorgvuldig geselecteerd.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="banner-item image-zoom-effect">
-              <div class="image-holder">
-                <a href="#">
-                  <img src="/images/IMG_3648.jpeg" alt="product" class="img-fluid">
-                </a>
-              </div>
-              <div class="banner-content py-4">
-                <h5 class="element-title text-uppercase responsive-heading">
-                  Modern en vrouwelijk
-                </h5>
-                <p class="responsive-paragraph">Een mix van moderne snits en vrouwelijke vormen. Perfect voor de
-                  vrouw die stijlvol en zelfverzekerd door het leven gaat.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="banner-item image-zoom-effect">
-              <div class="image-holder">
-                <a href="#">
-                  <img src="/images/IMG_3640.jpeg" alt="product" class="img-fluid">
-                </a>
-              </div>
-              <div class="banner-content py-4">
-                <h5 class="element-title text-uppercase responsive-heading">
-                  Comfort en stijl
-                </h5>
-                <p class="responsive-paragraph">Onze kleding is ontworpen voor draagbaarheid en comfort, zonder in
-                  te boeten op een elegante uitstraling.
-                </p>
-              </div>
-            </div>
+          {%- endfor -%}
           </div>
         </div>
         <div class="swiper-pagination"></div>

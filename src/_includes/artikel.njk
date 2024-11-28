@@ -5,4 +5,9 @@ hideStoreInfo: true
 hidePictureBanner: true
 ---
 
+{% mycapture "head" %}
+    <meta property="og:image" content="https://lou-marie.be/images/blog/{{ page.fileSlug }}.jpg">
+    <meta property="og:type" content="article" />
+{% endmycapture %}
+
 {{ content | safe }}
