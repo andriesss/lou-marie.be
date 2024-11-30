@@ -3,16 +3,17 @@ let hasTrackerLoaded = false
 let hasConsent = false
 
 function sendFBQEvent(command, category, payload) {
+    console.info("Sending FBQ event", command, category, payload);
     window.fbq(command, category, payload);
 }
 
-function trackEvent(category, payload) {
+function trackEvent(command, category, payload) {
     if (!hasTrackerLoaded || !hasConsent || !window.fbq) {
-        queue.push({category, payload})
+        queue.push({command, category, payload})
         return
     }
 
-    sendFBQEvent(category, payload)
+    sendFBQEvent(command, category, payload)
 }
 
 function onAddToCart(id, title, price) {
@@ -41,8 +42,8 @@ function onAddToCart(id, title, price) {
 function trackerLoaded() {
     trackerLoaded = true;
     while (queue.length) {
-        const {category, payload} = queue.shift()
-        sendFBQEvent(category, payload)
+        const {command, category, payload} = queue.shift()
+        sendFBQEvent(command, category, payload)
     }
 }
 
