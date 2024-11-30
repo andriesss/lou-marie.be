@@ -45,10 +45,14 @@ function onAddToCart(id, title, price) {
 
 function trackerLoaded() {
     hasTrackerLoaded = true;
-    while (queue.length) {
-        const {command, category, payload} = queue.shift()
-        sendFBQEvent(command, category, payload)
+    function processQueue() {
+        if (queue.length) {
+            const {command, category, payload} = queue.shift();
+            sendFBQEvent(command, category, payload);
+            setTimeout(processQueue, 0);
+        }
     }
+    processQueue();
 }
 
 function handleConsent(hasConsent) {
