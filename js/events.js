@@ -9,7 +9,11 @@ function sendFBQEvent(command, category, payload) {
 
 function trackEvent(command, category, payload) {
     if (!hasTrackerLoaded || !hasConsentForFbq || !window.fbq) {
-        queue.push({command, category, payload})
+        if (command === 'consent') {
+            queue.unshift({command, category, payload});
+        } else {
+            queue.push({command, category, payload});
+        }
         return
     }
 
