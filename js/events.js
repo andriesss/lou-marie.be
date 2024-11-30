@@ -44,7 +44,7 @@ function onAddToCart(id, title, price) {
 }
 
 function trackerLoaded() {
-    trackerLoaded = true;
+    hasTrackerLoaded = true;
     while (queue.length) {
         const {command, category, payload} = queue.shift()
         sendFBQEvent(command, category, payload)
