@@ -41,6 +41,7 @@ function onAddToCart(id, title, price) {
 
 function trackerLoaded() {
     trackerLoaded = true;
+    trackEvent("consent", hasConsent ? "grant" : "revoke");
     while (queue.length) {
         const {command, category, payload} = queue.shift()
         sendFBQEvent(command, category, payload)
