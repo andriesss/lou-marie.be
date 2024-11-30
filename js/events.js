@@ -1,6 +1,6 @@
 let queue = []
 let hasTrackerLoaded = false
-let hasConsent = false
+let hasConsentForFbq = false
 
 function sendFBQEvent(command, category, payload) {
     console.info("Sending FBQ event", command, category, payload);
@@ -8,7 +8,7 @@ function sendFBQEvent(command, category, payload) {
 }
 
 function trackEvent(command, category, payload) {
-    if (!hasTrackerLoaded || !hasConsent || !window.fbq) {
+    if (!hasTrackerLoaded || !hasConsentForFbq || !window.fbq) {
         queue.push({command, category, payload})
         return
     }
@@ -41,7 +41,6 @@ function onAddToCart(id, title, price) {
 
 function trackerLoaded() {
     trackerLoaded = true;
-    trackEvent("consent", hasConsent ? "grant" : "revoke");
     while (queue.length) {
         const {command, category, payload} = queue.shift()
         sendFBQEvent(command, category, payload)
@@ -49,6 +48,7 @@ function trackerLoaded() {
 }
 
 function handleConsent(hasConsent) {
+    hasConsentForFbq = hasConsent;
     if (!hasConsent) {
         return;
     }
