@@ -23,7 +23,7 @@ eleventyExcludeFromCollections: true
             <g:link>https://lou-marie.be/kleding/{{ product.data.id }}/</g:link>
             <g:image_link>https://lou-marie.be/images/products/{{ product.data.id }}_1sq.jpg</g:image_link>
             {%- for image in product.data.lifestyleImages -%}
-            <g:lifestyle_image_link>https://lou-marie.be/{{ image }}</g:lifestyle_image_link>
+            <g:lifestyle_image_link>https://lou-marie.be{{ image }}</g:lifestyle_image_link>
             {%- endfor -%}
             <g:condition>new</g:condition>
             <g:availability>in stock</g:availability>
