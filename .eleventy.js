@@ -37,6 +37,7 @@ module.exports = function (eleventyConfig) {
         S: 'S (36/38)',
         M: 'M (38/40)',
         L: 'L (40/42)',
+        XL: 'L (42/44)',
         OSFA: 'Taille unique',
     };
 
