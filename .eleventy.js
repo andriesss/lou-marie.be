@@ -68,10 +68,6 @@ module.exports = function (eleventyConfig) {
         return shuffled;
     });
 
-    // Define the product collection
-    eleventyConfig.addCollection("products", function(collectionApi) {
-        return collectionApi.getAll().filter(item => item.inputPath.includes('kleding'));
-    });
 
     eleventyConfig.addCollection("productJson", function(collectionApi) {
         return collectionApi.getFilteredByGlob("src/kleding/*.html").map(item => {
