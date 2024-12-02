@@ -2,9 +2,9 @@ let queue = []
 let hasTrackerLoaded = false
 let hasConsentForFbq = false
 
-function sendFBQEvent(command, category, payload) {
-    console.info("Sending FBQ event", command, category, payload);
-    window.fbq(command, category, payload);
+function sendFBQEvent(command, category, payload, customData = {}) {
+    console.info("Sending FBQ event", command, category, payload, customData);
+    window.fbq(command, category, payload, customData);
 }
 
 function trackEvent(command, category, payload) {

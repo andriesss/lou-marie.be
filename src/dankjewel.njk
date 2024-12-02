@@ -51,14 +51,39 @@ eleventyExcludeFromCollections: true
 <script>
     const params = new URLSearchParams(window.location.search);
     const productId = params.get("productId");
-    if (productId) {
+    const sessionId = params.get("sessionId");
+    if (productId && sessionId) {
         fetch('/products.json')
             .then(response => response.json())
             .then(data => {
                 const product = data.products.find(p => p.productId === productId);
                 if (product) {
-                    trackEvent('track', 'Purchase', {currency: "EUR", value: product.price});
+                    trackEvent(
+                        'track',
+                        'Purchase', {
+                            currency: "EUR",
+                            value: product.price
+                        },
+                        {
+                            eventID: sessionId
+                        }
+                    );
+
+                    gtag("event", "purchase", {
+                        currency: "EUR",
+                        value: product.price,
+                        transaction_id: sessionId,
+                        items: [
+                            {
+                                item_id: product.productId,
+                                item_name: product.title,
+                                price: product.price,
+                                quantity: 1,
+                            }
+                        ]
+                    });
                 }
             });
+
     }
 </script>
