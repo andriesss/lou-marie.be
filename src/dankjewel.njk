@@ -9,6 +9,12 @@ eleventyExcludeFromCollections: true
         <div class="row justify-content-center">
             <h2 class="section-title text-center mt-4" data-aos="fade-up">{{ title }}</h2>
             <div class="col-md-6 text-center" data-aos="fade-up" data-aos-delay="300">
+                {% set productId = queryParams.productId %}
+                {% if productId %}
+                    test
+                    <p>No product selected.</p>
+                {% endif %}
+
                 <p>Je bestelling is met zorg ontvangen, en we gaan meteen voor je aan de slag om alles in orde te maken.
                     Hieronder vind je de belangrijkste informatie over de verzending:
                 </p>
@@ -42,3 +48,17 @@ eleventyExcludeFromCollections: true
         </div>
     </div>
 </section>
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get("productId");
+    if (productId) {
+        fetch('/products.json')
+            .then(response => response.json())
+            .then(data => {
+                const product = data.products.find(p => p.productId === productId);
+                if (product) {
+                    trackEvent('track', 'Purchase', {currency: "EUR", value: product.price});
+                }
+            });
+    }
+</script>

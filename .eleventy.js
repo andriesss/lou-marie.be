@@ -59,6 +59,30 @@ module.exports = function (eleventyConfig) {
         return inputPath.split('/').pop().replace(/\.[^/.]+$/, ""); // Remove extension
     });
 
+    eleventyConfig.addFilter("shuffle", (array) => {
+        let shuffled = array.slice(); // Create a shallow copy to avoid mutating the original array
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+    });
+
+    // Define the product collection
+    eleventyConfig.addCollection("products", function(collectionApi) {
+        return collectionApi.getAll().filter(item => item.inputPath.includes('kleding'));
+    });
+
+    eleventyConfig.addCollection("productJson", function(collectionApi) {
+        return collectionApi.getFilteredByGlob("src/kleding/*.html").map(item => {
+            return {
+                productId: item.data.id,
+                title: item.data.title,
+                price: item.data.price
+            };
+        });
+    });
+
     return {
         dir: {
             input: "src",
