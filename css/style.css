@@ -1615,3 +1615,18 @@ a.btn-link.text-light:after {
   }
 }
 
+.catalog-image {
+  position: relative;
+  width: 100%;
+  padding-top: 140%; /* 271:400 aspect ratio */
+  overflow: hidden;
+}
+
+.catalog-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image scales and fills the container */
+}
