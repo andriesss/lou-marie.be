@@ -1,17 +1,79 @@
+const fs = require("fs");
+const path = require("path");
+const { minify } = require("terser");
+const sharp = require("sharp");
+
+function readFilesRecursively(dir) {
+    let results = [];
+    const list = fs.readdirSync(dir);
+    list.forEach(file => {
+        file = path.resolve(dir, file);
+        const stat = fs.statSync(file);
+        if (stat && stat.isDirectory()) {
+            results = results.concat(readFilesRecursively(file));
+        } else {
+            results.push(file);
+        }
+    });
+
+    return results;
+}
+
 module.exports = function (eleventyConfig) {
-    eleventyConfig.addPassthroughCopy("images");
-    eleventyConfig.addPassthroughCopy("js");
     eleventyConfig.addPassthroughCopy("css");
     eleventyConfig.addPassthroughCopy("browserconfig.xml");
     eleventyConfig.addPassthroughCopy("site.webmanifest");
     eleventyConfig.addPassthroughCopy("src/robots.txt");
 
     let _CAPTURES;
-    eleventyConfig.on('beforeBuild', () => {
+    eleventyConfig.on('beforeBuild', async () => {
         //I need this to wipe _CAPTURES when editing pages, wouldn't be an issue in prod
         _CAPTURES = {};
-    });
 
+        eleventyConfig.addPassthroughCopy("js");
+        const srcDir = "./js";
+        const outputDir = "./dist/js";
+
+        if (!fs.existsSync(outputDir)) {
+            fs.mkdirSync(outputDir, {recursive: true});
+        }
+
+        const files = fs.readdirSync(srcDir);
+        for (const file of files) {
+            if (path.extname(file) === ".js") {
+                const filePath = path.join(srcDir, file);
+                const content = fs.readFileSync(filePath, "utf-8");
+                const minified = await minify(content);
+                fs.writeFileSync(path.join(outputDir, file), minified.code);
+            }
+        }
+
+        eleventyConfig.addPassthroughCopy("images");
+
+        const imageSrcDir = "./images";
+        const imageOutputDir = "./dist/images";
+
+        if (!fs.existsSync(imageOutputDir)) {
+            fs.mkdirSync(imageOutputDir, {recursive: true});
+        }
+
+        const imageFiles = readFilesRecursively(imageSrcDir);
+        for (const imageFile of imageFiles) {
+            const ext = path.extname(imageFile).toLowerCase();
+            const outputImagePath = path.join(imageOutputDir, path.relative(imageSrcDir, imageFile));
+            const outputImageDir = path.dirname(outputImagePath);
+            if (!fs.existsSync(outputImageDir)) {
+                fs.mkdirSync(outputImageDir, {recursive: true});
+            }
+
+            fs.copyFileSync(imageFile, outputImagePath);
+
+            if (ext === ".jpg" || ext === ".jpeg" || ext === ".png") {
+                const webpImagePath = outputImagePath.replace(ext, ".webp");
+                await sharp(imageFile).webp().toFile(webpImagePath);
+            }
+        }
+    });
 
     eleventyConfig.addPairedShortcode("mycapture", function (content, name) {
         if(!_CAPTURES[this.page.inputPath]) _CAPTURES[this.page.inputPath] = {};

@@ -29,7 +29,10 @@ hidePictureBanner: true
             <div class="collection-item d-flex flex-wrap my-5">
                 <div class="col-md-6 column-container">
                     <div class="image-holder">
-                        <img src="{{ image }}" alt="{{ title }}" class="product-image img-fluid ">
+                        <picture>
+                            <source srcset="{{ image | replace('.jpg', '.webp') }}" type="image/webp">
+                            <img src="{{ image }}" alt="{{ title }}" class="product-image img-fluid">
+                        </picture>
                     </div>
                 </div>
                 <div class="col-md-6 column-container bg-white">
@@ -79,7 +82,10 @@ hidePictureBanner: true
                     <div class="swiper-slide">
                         <div class="product-item image-zoom-effect link-effect">
                             <div class="image-holder position-relative">
-                                <img src="{{ image }}" alt="{{ title }}" loading="lazy" class="product-image img-fluid">
+                                <picture>
+                                    <source srcset="{{ image | replace('.jpg', '.webp') }}" type="image/webp">
+                                    <img src="{{ image }}" alt="{{ title }}" loading="lazy" class="product-image img-fluid">
+                                </picture>
                             </div>
                         </div>
                     </div>
