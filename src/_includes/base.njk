@@ -40,7 +40,6 @@
     'ad_user_data': 'denied',
     'ad_personalization': 'denied',
     'analytics_storage': 'denied',
-    'wait_for_update': 400,
   });
   gtag('js', new Date());
   if (window.location.hostname === 'localhost') {
@@ -48,9 +47,7 @@
       'debug_mode': true
     });
   } else {
-    gtag('config', 'G-SVSKJHKLTZ', {
-      'anonymize_ip': true
-    });
+    gtag('config', 'G-SVSKJHKLTZ');
   }
 </script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SVSKJHKLTZ"></script>
