@@ -61,8 +61,10 @@ eleventyExcludeFromCollections: true
                     trackEvent(
                         'track',
                         'Purchase', {
+                            content_ids: [product.productId],
+                            value: product.price,
                             currency: "EUR",
-                            value: product.price
+                            content_type: "product"
                         },
                         {
                             eventID: sessionId
