@@ -100,15 +100,19 @@ hidePictureBanner: true
         content_ids: ['{{ id }}'],
         content_type: 'product',
     });
+{% endmycapture %}
 
-    trackGtagEvent("event", "view_item", {
+<script>
+    gtag("event", "view_item", {
         currency: "EUR",
         value: {{ price }},
-        items: [{
-            item_id: "{{ id }}",
-            item_name: "{{ title }}",
-            price: {{ price }},
-            quantity: 1,
-        }]
+        items: [
+            {
+                item_id: "{{ id }}",
+                item_name: "{{ title }}",
+                price: {{ price }},
+                quantity: 1,
+            }
+        ]
     });
-{% endmycapture %}
+</script>
