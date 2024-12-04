@@ -38,6 +38,7 @@ function trackGTagEvent(command, category, payload) {
 function onAddToCart(id, title, price) {
     trackEvent('track', 'AddToCart', {
         content_ids: [id],
+        content_type: 'product'
     });
 
     trackEvent('track', 'InitiateCheckout', {
