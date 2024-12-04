@@ -32,15 +32,18 @@
   // Define dataLayer and the gtag function.
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-
-  // Set default consent to 'denied' as a placeholder
-  // Determine actual values based on your own requirements
   gtag('consent', 'default', {
     'ad_storage': 'denied',
     'ad_user_data': 'denied',
     'ad_personalization': 'denied',
     'analytics_storage': 'denied',
   });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SVSKJHKLTZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
   gtag('js', new Date());
   if (window.location.hostname === 'localhost') {
     gtag('config', 'G-SVSKJHKLTZ', {
@@ -50,7 +53,6 @@
     gtag('config', 'G-SVSKJHKLTZ');
   }
 </script>
-<script defer src="https://www.googletagmanager.com/gtag/js?id=G-SVSKJHKLTZ"></script>
 
 <body class="homepage">
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
