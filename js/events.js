@@ -1,23 +1,38 @@
 let queue = []
+let gTagQueue = []
 let hasTrackerLoaded = false
-let hasConsentForFbq = false
+let hasCookieConsent = false
 
 function sendFBQEvent(command, category, payload, customData = {}) {
     console.info("Sending FBQ event", command, category, payload, customData);
     window.fbq(command, category, payload, customData);
 }
 
-function trackEvent(command, category, payload) {
-    if (!hasTrackerLoaded || !hasConsentForFbq || !window.fbq) {
+function sendGTagEvent(command, category, payload) {
+    console.info("Sending Gtag event", command, category, payload);
+    gtag(command, category, payload);
+}
+
+function trackEvent(command, category, payload, customData) {
+    if (!hasTrackerLoaded || !hasCookieConsent || !window.fbq) {
         if (command === 'consent') {
             queue.unshift({command, category, payload});
         } else {
-            queue.push({command, category, payload});
+            queue.push({command, category, payload, customData});
         }
         return
     }
 
-    sendFBQEvent(command, category, payload)
+    sendFBQEvent(command, category, payload, customData)
+}
+
+function trackGTagEvent(command, category, payload) {
+    if (!hasCookieConsent) {
+        gTagQueue.push({command, category, payload});
+        return
+    }
+
+    sendGTagEvent(command, category, payload)
 }
 
 function onAddToCart(id, title, price) {
@@ -29,7 +44,7 @@ function onAddToCart(id, title, price) {
         content_ids: [id],
     });
 
-    gtag("event", "begin_checkout", {
+    trackGTagEvent("event", "begin_checkout", {
         currency: "EUR",
         value: price,
         items: [
@@ -47,8 +62,8 @@ function trackerLoaded() {
     hasTrackerLoaded = true;
     function processQueue() {
         if (queue.length) {
-            const {command, category, payload} = queue.shift();
-            sendFBQEvent(command, category, payload);
+            const {command, category, payload, customData} = queue.shift();
+            sendFBQEvent(command, category, payload, customData);
             setTimeout(processQueue, 0);
         }
     }
@@ -56,7 +71,7 @@ function trackerLoaded() {
 }
 
 function handleConsent(hasConsent) {
-    hasConsentForFbq = hasConsent;
+    hasCookieConsent = hasConsent;
     if (!hasConsent) {
         return;
     }
@@ -70,6 +85,15 @@ function handleConsent(hasConsent) {
         'ad_storage': 'denied',
         'analytics_storage': 'granted'
     });
+
+    function processGTagQueue() {
+        if (gTagQueue.length) {
+            const {command, category, payload} = gTagQueue.shift();
+            sendGTagEvent(command, category, payload);
+            setTimeout(processGTagQueue, 0);
+        }
+    }
+    processGTagQueue();
 }
 
 window.addEventListener("cookie_consent", (eventData) => {

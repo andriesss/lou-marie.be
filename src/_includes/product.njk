@@ -101,7 +101,7 @@ hidePictureBanner: true
         content_type: 'product',
     });
 
-    gtag("event", "view_item", {
+    trackGTagEvent("event", "view_item", {
         currency: "EUR",
         value: {{ price }},
         items: [{
