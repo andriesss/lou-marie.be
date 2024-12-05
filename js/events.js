@@ -4,12 +4,12 @@ let hasTrackerLoaded = false
 let hasCookieConsent = false
 
 function sendFBQEvent(command, category, payload, customData = {}) {
-    console.info("Sending FBQ event", command, category, payload, customData);
+    console.info("Sending FBQ event", new Date(), command, category, payload, customData);
     window.fbq(command, category, payload, customData);
 }
 
 function sendGTagEvent(command, category, payload) {
-    console.info("Sending Gtag event", command, category, payload);
+    console.info("Sending Gtag event", new Date(), command, category, payload);
     gtag(command, category, payload);
 }
 
@@ -43,6 +43,20 @@ function onAddToCart(id, title, price) {
 
     trackEvent('track', 'InitiateCheckout', {
         content_ids: [id],
+    });
+
+
+    trackGTagEvent("event", "add_to_cart", {
+        currency: "EUR",
+        value: price,
+        items: [
+            {
+                item_id: id,
+                item_name: title,
+                price: price,
+                quantity: 1,
+            }
+        ]
     });
 
     trackGTagEvent("event", "begin_checkout", {

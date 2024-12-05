@@ -1630,3 +1630,17 @@ a.btn-link.text-light:after {
   height: 100%;
   object-fit: cover; /* Ensures the image scales and fills the container */
 }
+
+.shipping-cost {
+  font-size: 0.9em;
+}
+
+.free-shipping {
+  color: #007000;
+  font-weight: bold;
+}
+
+.shipping-info {
+  font-size: 0.9em;
+  color: #007000;
+}

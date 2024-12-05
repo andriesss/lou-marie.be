@@ -24,6 +24,8 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy("browserconfig.xml");
     eleventyConfig.addPassthroughCopy("site.webmanifest");
     eleventyConfig.addPassthroughCopy("src/robots.txt");
+    eleventyConfig.addPassthroughCopy("js");
+    eleventyConfig.addPassthroughCopy("images");
 
     let _CAPTURES;
     eleventyConfig.on('beforeBuild', async () => {
@@ -31,46 +33,50 @@ module.exports = function (eleventyConfig) {
         _CAPTURES = {};
 
         eleventyConfig.addPassthroughCopy("js");
-        const srcDir = "./js";
-        const outputDir = "./dist/js";
-
-        if (!fs.existsSync(outputDir)) {
-            fs.mkdirSync(outputDir, {recursive: true});
-        }
-
-        const files = fs.readdirSync(srcDir);
-        for (const file of files) {
-            if (path.extname(file) === ".js") {
-                const filePath = path.join(srcDir, file);
-                const content = fs.readFileSync(filePath, "utf-8");
-                const minified = await minify(content);
-                fs.writeFileSync(path.join(outputDir, file), minified.code);
-            }
-        }
-
         eleventyConfig.addPassthroughCopy("images");
 
-        const imageSrcDir = "./images";
-        const imageOutputDir = "./dist/images";
+        if (process.env.ELEVENTY_RUN_MODE !== "serve") {
+            const srcDir = "./js";
+            const outputDir = "./dist/js";
 
-        if (!fs.existsSync(imageOutputDir)) {
-            fs.mkdirSync(imageOutputDir, {recursive: true});
-        }
-
-        const imageFiles = readFilesRecursively(imageSrcDir);
-        for (const imageFile of imageFiles) {
-            const ext = path.extname(imageFile).toLowerCase();
-            const outputImagePath = path.join(imageOutputDir, path.relative(imageSrcDir, imageFile));
-            const outputImageDir = path.dirname(outputImagePath);
-            if (!fs.existsSync(outputImageDir)) {
-                fs.mkdirSync(outputImageDir, {recursive: true});
+            if (!fs.existsSync(outputDir)) {
+                fs.mkdirSync(outputDir, {recursive: true});
             }
 
-            fs.copyFileSync(imageFile, outputImagePath);
+            const files = fs.readdirSync(srcDir);
+            for (const file of files) {
+                if (path.extname(file) === ".js") {
+                    const filePath = path.join(srcDir, file);
+                    const content = fs.readFileSync(filePath, "utf-8");
+                    const minified = await minify(content);
+                    fs.writeFileSync(path.join(outputDir, file), minified.code);
+                }
+            }
+        }
 
-            if (ext === ".jpg" || ext === ".jpeg" || ext === ".png") {
-                const webpImagePath = outputImagePath.replace(ext, ".webp");
-                await sharp(imageFile).webp().toFile(webpImagePath);
+        if (process.env.ELEVENTY_RUN_MODE !== "serve") {
+            const imageSrcDir = "./images";
+            const imageOutputDir = "./dist/images";
+
+            if (!fs.existsSync(imageOutputDir)) {
+                fs.mkdirSync(imageOutputDir, {recursive: true});
+            }
+
+            const imageFiles = readFilesRecursively(imageSrcDir);
+            for (const imageFile of imageFiles) {
+                const ext = path.extname(imageFile).toLowerCase();
+                const outputImagePath = path.join(imageOutputDir, path.relative(imageSrcDir, imageFile));
+                const outputImageDir = path.dirname(outputImagePath);
+                if (!fs.existsSync(outputImageDir)) {
+                    fs.mkdirSync(outputImageDir, {recursive: true});
+                }
+
+                fs.copyFileSync(imageFile, outputImagePath);
+
+                if (ext === ".jpg" || ext === ".jpeg" || ext === ".png") {
+                    const webpImagePath = outputImagePath.replace(ext, ".webp");
+                    await sharp(imageFile).webp().toFile(webpImagePath);
+                }
             }
         }
     });
@@ -139,6 +145,18 @@ module.exports = function (eleventyConfig) {
                 price: item.data.price
             };
         });
+    });
+
+
+    eleventyConfig.addShortcode("picture", function(image, title) {
+        if (process.env.ELEVENTY_RUN_MODE === "serve") {
+            return `<picture><img src="${image}" alt="${title}" class="product-image img-fluid"></picture>`;
+        } else {
+            return `<picture>
+            <source srcset="${image.replace('.jpg', '.webp')}" type="image/webp">
+            <img src="${image}" alt="${title}" class="product-image img-fluid">
+          </picture>`;
+        }
     });
 
     return {

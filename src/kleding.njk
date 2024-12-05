@@ -27,11 +27,7 @@ hidePictureBanner: true
                 <article class="post-item">
                     <div class="post-image catalog-image position-relative">
                         <a href="{{ post.url }}">
-                            <picture>
-                                <source srcset="{{ post.data.image | replace('.jpg', '.webp') }}" type="image/webp">
-                                <img src="{{ post.data.image }}" alt="{{ post.data.title }}" {% if loop.index != 1 %}loading="lazy"{% endif %}
-                                     class="product-image img-fluid">
-                            </picture>
+                            {% picture post.data.image, post.data.title %}
                         </a>
                         <div class="overlay d-flex justify-content-center align-items-center">
                             <a href="{{ post.url }}" class="btn btn-dark text-uppercase">
