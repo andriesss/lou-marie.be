@@ -54,7 +54,8 @@ hidePictureBanner: true
                            target="_blank"
                            href="{{ stripeButton }}"
                            class="btn btn-success text-uppercase mt-4 call-to-action"
-                           onmouseup="onAddToCart('{{ id }}', '{{ title }}', {{ price }});">
+                           onmouseup="onAddToCart('{{ id }}', '{{ title }}', {{ price }});"
+                           title="Bestel {{ title }} voor {{ price | currency }}">
                             <svg width="25" height="25" viewBox="0 0 24 24">
                                 <use xlink:href="#gift"></use>
                             </svg>
