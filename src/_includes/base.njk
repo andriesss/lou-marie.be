@@ -16,8 +16,12 @@
   <meta property="og:url" content="{{ site.url }}{{ page.url }}">
   {% displaycapture "head" %}
   <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css" href="/css/vendor.css">
-  <link rel="stylesheet" type="text/css" href="/css/swiper-bundle.min.css">
+  <link rel="preload" href="/css/vendor.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="/css/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="/css/vendor.css">
+    <link rel="stylesheet" href="/css/swiper-bundle.min.css">
+  </noscript>
   <link rel="stylesheet" type="text/css" href="/css/style.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
@@ -127,7 +131,7 @@
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
                 <li class="nav-item">
-                  <a class="nav-link" href="/">Start</a>
+                  <a class="nav-link" title="Ga naar de startpagina" href="/">Start</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" title="Bekijk onze kleding en shop online" href="/kleding/">Onze kleding (shop)</a>
@@ -207,7 +211,6 @@
   <section class="collection bg-light position-relative py-5">
     <div class="container">
       <div class="row">
-        <div class="title-xlarge text-uppercase txt-fx domino">Collection</div>
         <div class="collection-item d-flex flex-wrap my-5">
           <div class="col-md-6 column-container">
             <div class="image-holder">

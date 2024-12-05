@@ -31,11 +31,22 @@ eleventyExcludeFromCollections: true
             <g:age_group>adult</g:age_group>
             <g:gender>female</g:gender>
             <g:google_product_category>{{ product.data.googleProductCategory }}</g:google_product_category>
+            {% if price >= 75 %}
+            <g:shipping>
+                <g:country>BE</g:country>
+                <g:service>Standaard</g:service>
+                <g:price>0 EUR</g:price>
+            </g:shipping>
+            {% else %}
             <g:shipping>
                 <g:country>BE</g:country>
                 <g:service>Standaard</g:service>
                 <g:price>6.50 EUR</g:price>
             </g:shipping>
+            {% endif %}
+            {%- for image in product.data.lifestyleImages -%}
+                <g:additional_image_link>https://lou-marie.be{{ image }}</g:additional_image_link>
+            {%- endfor -%}
         </item>
         {%- endfor -%}
         {%- endfor -%}

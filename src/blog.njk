@@ -33,7 +33,7 @@ hidePictureBanner: true
                 {%- for post in collections.blog -%}
                 <article class="post-item mb-5 pb-5">
                     <div class="post-image">
-                        <a href="{{ post.url }}">
+                        <a href="{{ post.url }}" title="Lees het artikel {{ post.data.title }}">
                             <img src="/images/blog/{{ post.fileSlug }}.jpg" class="img-fluid" alt="{{ post.data.title }}">
                         </a>
                     </div>
