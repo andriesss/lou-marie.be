@@ -113,6 +113,7 @@ hidePictureBanner: true
     {% endif %}
 {% endfor %}
 
+{% set otherProducts = otherProducts | randomOrder%}
 {% set otherProducts = otherProducts.slice(0, 4) %}
 
 <section id="related-products" class="related-products product-carousel position-relative open-up aos-init aos-animate" data-aos="zoom-out">
@@ -128,7 +129,7 @@ hidePictureBanner: true
                     <div class="product-item image-zoom-effect link-effect">
                         <div class="image-holder">
                             <a href="/kleding/{{ product.data.id }}/" title="Bekijk {{ product.data.title }}">
-                                {% picture product.data.lifestyleImages[1], product.data.title %}
+                                {% picture product.data.lifestyleImages[1] or product.data.lifestyleImages[0], product.data.title %}
                             </a>
 
                             <div class="product-content">
