@@ -83,6 +83,7 @@ hidePictureBanner: true
     </div>
 </section>
 
+{% if extraImages and extraImages.length >= 0 %}
 <section id="new-arrival" class="new-arrival product-carousel py-5 position-relative overflow-hidden">
     <div class="container">
         <div class="swiper product-swiper open-up" data-aos="zoom-out">
@@ -103,6 +104,7 @@ hidePictureBanner: true
         </div>
     </div>
 </section>
+{% endif %}
 
 {% set otherProducts = [] %}
 {% for product in collections.products %}
