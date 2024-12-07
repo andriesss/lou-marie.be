@@ -32,12 +32,14 @@ eleventyExcludeFromCollections: true
             <g:gender>female</g:gender>
             <g:google_product_category>{{ product.data.googleProductCategory }}</g:google_product_category>
             {% if price >= 75 %}
+            <g:shipping_label>Gratis</g:shipping_label>
             <g:shipping>
                 <g:country>BE</g:country>
                 <g:service>Standaard</g:service>
                 <g:price>0 EUR</g:price>
             </g:shipping>
             {% else %}
+            <g:shipping_label>Standaard</g:shipping_label>
             <g:shipping>
                 <g:country>BE</g:country>
                 <g:service>Standaard</g:service>
