@@ -22,9 +22,8 @@ hidePictureBanner: true
                 </p>
 
                 <h5 class="text-uppercase">Verzendkosten België</h5>
-                <p>In gemeente Pelt: <strong>gratis</strong> vanaf € 50,00<br>
-                Verzendkosten: € 6,50<br>
-                <strong>Gratis</strong> verzending bij bestellingen vanaf € 75,00</p>
+                Verzendkosten: {{ site.shippingCost | currency }}<br>
+                <strong>Gratis</strong> verzending bij bestellingen vanaf {{ site.minimumOrderValueForFreeShipping | currency }}</p>
 
                 <h5 class="text-uppercase">Levertijd</h5>
                 <p>

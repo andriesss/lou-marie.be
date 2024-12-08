@@ -72,7 +72,7 @@ hidePictureBanner: true
                         <p>&nbsp;</p>
                         <p class="shipping-info">Bestel je voor 16:00 uur op maandag t/m zaterdag? Dan sturen we je bestelling nog dezelfde dag op!</p>
                         {% if price < site.minimumOrderValueForFreeShipping %}
-                            <p class="shipping-cost">De verzendkosten zijn 6,50 EUR voor bestellingen < {{ site.minimumOrderValueForFreeShipping | currency }}. Meerdere producten tegelijkertijd
+                            <p class="shipping-cost">De verzendkosten zijn {{ site.shippingCost | currency }} voor bestellingen < {{ site.minimumOrderValueForFreeShipping | currency }}. Meerdere producten tegelijkertijd
                                 bestellen? Stuur een WhatsApp naar <a href="https://wa.me/+32456890694">0456 890 694</a>
                             </p>
                         {% endif %}
@@ -154,7 +154,7 @@ hidePictureBanner: true
 {% mycapture "trackers" %}
     trackEvent('track', 'ViewContent', {
         content_ids: ['{{ id }}'],
-        content_type: 'product',
+        content_type: 'product'
     });
 
     trackGTagEvent("event", "view_item", {
@@ -164,7 +164,7 @@ hidePictureBanner: true
             item_id: "{{ id }}",
             item_name: "{{ title }}",
             price: {{ price }},
-            quantity: 1,
+            quantity: 1
         }]
     });
 {% endmycapture %}

@@ -42,7 +42,7 @@ function onAddToCart(id, title, price) {
     });
 
     trackEvent('track', 'InitiateCheckout', {
-        content_ids: [id],
+        content_ids: [id]
     });
 
 
@@ -54,7 +54,7 @@ function onAddToCart(id, title, price) {
                 item_id: id,
                 item_name: title,
                 price: price,
-                quantity: 1,
+                quantity: 1
             }
         ]
     });
@@ -67,7 +67,7 @@ function onAddToCart(id, title, price) {
                 item_id: id,
                 item_name: title,
                 price: price,
-                quantity: 1,
+                quantity: 1
             }
         ]
     });
