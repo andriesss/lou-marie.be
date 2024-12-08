@@ -90,7 +90,7 @@ class GlowCookies {
 
         switch (cookies) {
             case "1":
-                this.openManageCookies();
+                //this.openManageCookies();
                 this.activateTracking();
                 this.addCustomScript();
                 break;
@@ -112,6 +112,11 @@ class GlowCookies {
         this.DOMbanner.classList.add('glowCookies__show')
     }
 
+    closeSelector() {
+        this.PreBanner.style.display = "none";
+        this.DOMbanner.classList.remove('glowCookies__show')
+    }
+
     acceptCookies() {
         localStorage.setItem("GlowCookies", "1")
         this.openManageCookies()
@@ -121,6 +126,7 @@ class GlowCookies {
            detail: { accepted: true }
 
         });
+        this.closeSelector();
         window.dispatchEvent(event);
     }
 

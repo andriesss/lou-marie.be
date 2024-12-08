@@ -354,6 +354,9 @@
                 <a href="/privacy/" title="Lees ons privacybeleid" class="item-anchor">Privacybeleid</a>
               </li>
               <li class="menu-item">
+                <a href="#" title="Lees ons privacybeleid" class="item-anchor" onclick="showManageCookies();return false;">Beheer uw cookies</a>
+              </li>
+              <li class="menu-item">
                 <a href="/algemene-voorwaarden/" title="Lees onze algemene voorwaarden" class="item-anchor">Algemene voorwaarden</a>
               </li>
             </ul>
@@ -407,6 +410,9 @@
       bannerDescription: 'Met jouw toestemming meten we hoe goed onze advertenties werken en leren we hoe onze website wordt gebruikt.<br><br>Door cookies te accepteren, help je ons marketingkosten laag te houden en onze website nóg beter te maken.<br><br>',
     });
 
+    function showManageCookies() {
+      glowCookies.openSelector();
+    }
     {% displaycapture "trackers" %}
   </script>
 </body>
