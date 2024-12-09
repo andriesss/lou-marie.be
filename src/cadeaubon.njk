@@ -1,6 +1,6 @@
 ---
 title: Cadeaubon
-description: "Geef de perfecte feestdagencadeau met een Lou-Marie fashion cadeaubon! 🎁 Bestel eenvoudig via WhatsApp en laat haar zelf haar favoriete stijl kiezen. Makkelijk, stijlvol en altijd raak!"
+description: "Geef de perfecte feestdagencadeau met een Lou-Marie fashion cadeaubon! 🎁 Bestel eenvoudig online of via WhatsApp en laat haar zelf haar favoriete stijl kiezen. Makkelijk, stijlvol en altijd raak!"
 keywords: "cadeaubon, Lou-Marie fashion, feestdagen cadeau, cadeau voor haar, stijlvol cadeau, gift voucher, damesmode, cadeau-idee, cadeaukaart, modieuze cadeaubon, kerstcadeau, cadeautip vrouwen, fashion cadeau."
 layout: "base.njk"
 hideSellingPoints: false
@@ -24,11 +24,55 @@ hidePictureBanner: true
                     Met onze gift vouchers geef je haar de vrijheid om zelf haar favoriete items uit onze stijlvolle
                     collectie te selecteren.
                 </p>
-                <p>{% picture "/images/cadeaubon.jpg", "Cadeaubon van Lou-Marie fashion" %}</p>
-                <h5 class="text-uppercase">Hoe bestel je?</h5>
-                <p>Stuur ons een bericht via WhatsApp op <a aria-label="Chat on WhatsApp" href="https://wa.me/+320456890694">
-                    045689069</a> en geef aan welk bedrag je op de cadeaubon wilt zetten. Wij zorgen voor de rest.
-                    Je kan de cadeaubon afhalen in onze winkel.
+                <h5 class="text-uppercase">Hoe werkt het?</h5>
+                <p>Zodra jouw bestelling is verwerkt, maken we de cadeaubon in orde.</p>
+                <p>In de meeste gevallen kun je de bon nog dezelfde dag <strong>ophalen in onze winkel (we kunnen ze niet digitaal versturen)</strong>.</p>
+                <p>Je ontvangt van ons een berichtje via WhatsApp of e-mail zodra de bon klaarligt.</p>
+                <p>Daarna kun je de bon eenvoudig afhalen in de winkel tijdens onze openingsuren of op afspraak.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            {%- for card in site.giftCards -%}
+                <div class="col-md-3">
+                    <article class="post-item">
+                        <div class="post-image position-relative">
+                            {% picture "/images/cadeaubon/" + card.value + "EUR.jpg", "Cadeaubon van Lou-Marie fashion ter waarde van " + card.value | currency %}
+                        </div>
+                        <div class="post-content d-flex justify-content-center align-items-center flex-wrap gap-0 my-0">
+                                <a target="_blank"
+                                 href="{{ stripeButton }}"
+                                 class="btn btn-success text-uppercase mt-4 call-to-action"
+                                 onmouseup="onAddToCart('cadeaubon_{{ card.value }}', 'Cadeaubon {{ card.value }}', {{ card.value }});"
+                                 title="Bestel deze cadeaubon ter waarde van {{ card.value | currency }}">
+                                <svg width="25" height="25" viewBox="0 0 24 24">
+                                    <use xlink:href="#gift"></use>
+                                </svg>
+                                Bestellen
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            {%- endfor -%}
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <h2 class="section-title text-center mt-4">
+                Vragen?
+            </h2>
+            <div class="col-md-6 text-center">
+                <p>
+                    Heb je vragen of wil je iets aanpassen? Neem gerust contact met ons op, we helpen je graag verder!
+                    <br>
+                    <br>
+                    E-mail: <a href="mailto:info@lou-marie.be" class="item-anchor">info@lou-marie.be</a><br>
+                    WhatsApp: <a aria-label="Chat on WhatsApp" href="https://wa.me/+320456890694">
+                        0456 890 694
+                    </a>
                 </p>
                 <p>Let erop dat aankopen van cadeaubonnen kunnen niet worden terugbetaald.</p>
             </div>

@@ -1,5 +1,23 @@
 {
   "url": "https://lou-marie.be",
   "shippingCost": 6.5,
-  "minimumOrderValueForFreeShipping": 30
+  "minimumOrderValueForFreeShipping": 30,
+  "giftCards": [
+    {
+      "value": 25,
+      "stripeButton": "https://buy.stripe.com/9AQ6q3cZccwd3Hq5kD"
+    },
+    {
+      "value": 50,
+      "stripeButton": "https://buy.stripe.com/7sI6q33oCao5em49AS"
+    },
+    {
+      "value": 75,
+      "stripeButton": "https://buy.stripe.com/5kA7u71gu67P6TC4gx"
+    },
+    {
+      "value": 100,
+      "stripeButton": "https://buy.stripe.com/9AQ3dR4sGcwd91KaEU"
+    }
+  ]
 }
