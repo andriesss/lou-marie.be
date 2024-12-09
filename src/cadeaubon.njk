@@ -35,20 +35,20 @@ hidePictureBanner: true
         <div class="row">
             {%- for card in site.giftCards -%}
                 <div class="col-md-3">
-                    <article class="post-item">
+                    <article class="post-item mb-4">
                         <div class="post-image position-relative">
                             {% picture "/images/cadeaubon/" + card.value + "EUR.jpg", "Cadeaubon van Lou-Marie fashion ter waarde van " + card.value | currency %}
                         </div>
                         <div class="post-content d-flex justify-content-center align-items-center flex-wrap gap-0 my-0">
                                 <a target="_blank"
-                                 href="{{ stripeButton }}"
+                                 href="{{ card.stripeButton }}"
                                  class="btn btn-success text-uppercase mt-4 call-to-action"
                                  onmouseup="onAddToCart('cadeaubon_{{ card.value }}', 'Cadeaubon {{ card.value }}', {{ card.value }});"
                                  title="Bestel deze cadeaubon ter waarde van {{ card.value | currency }}">
                                 <svg width="25" height="25" viewBox="0 0 24 24">
                                     <use xlink:href="#gift"></use>
                                 </svg>
-                                Bestellen
+                                Bestel deze cadeaubon van {{ card.value | currency }}
                             </a>
                         </div>
                     </article>
