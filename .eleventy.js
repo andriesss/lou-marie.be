@@ -97,7 +97,7 @@ module.exports = function (eleventyConfig) {
         return new Intl.NumberFormat('nl-NL', {
             style: 'currency',
             currency: 'EUR',
-            currencyDisplay: 'code'
+            currencyDisplay: 'name'
         }).format(value);
     });
 
