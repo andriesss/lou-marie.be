@@ -8,6 +8,7 @@ permalink: '/products.json'
     {
       "productId": "{{ product.productId }}",
       "title": "{{ product.title }}",
+      "sizes": [{% for size in product.sizes %}"{{ size }}"{% if not loop.last %}, {% endif %}{% endfor %}],
       "price": "{{ product.price }}"
     }{% if not loop.last %},{% endif %}
     {% endfor %}

@@ -106,6 +106,7 @@ module.exports = function (eleventyConfig) {
         M: 'M (38/40)',
         L: 'L (40/42)',
         XL: 'XL (42/44)',
+        XXL: 'XXL (44/46)',
         OSFA: 'Taille unique',
     };
 
@@ -142,7 +143,8 @@ module.exports = function (eleventyConfig) {
             return {
                 productId: item.data.id,
                 title: item.data.title,
-                price: item.data.price
+                price: item.data.price,
+                sizes: item.data.sizes,
             };
         });
     });
