@@ -1,7 +1,7 @@
 {
   "url": "https://lou-marie.be",
   "shippingCost": 6.5,
-  "minimumOrderValueForFreeShipping": 30,
+  "minimumOrderValueForFreeShipping": 75,
   "giftCards": [
     {
       "value": 25,
