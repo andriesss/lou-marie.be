@@ -12,7 +12,7 @@ hidePictureBanner: true
     <meta property="og:image" content="https://lou-marie.be/images/cadeaubon.jpg">
 {% endmycapture %}
 
-<section id="billboard" class="bg-light py-5">
+<section class="bg-light py-5">
     <div class="container">
         <div class="row justify-content-center">
             <h2 class="section-title text-center mt-4">
@@ -24,46 +24,85 @@ hidePictureBanner: true
                     Met onze gift vouchers geef je haar de vrijheid om zelf haar favoriete items uit onze stijlvolle
                     collectie te selecteren.
                 </p>
-                <h5 class="text-uppercase">Hoe werkt het?</h5>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% set otherProducts = [] %}
+{% for product in collections.products %}
+    {% if product.url !== page.url %}
+        {% set dummy = otherProducts.push(product) %}
+    {% endif %}
+{% endfor %}
+
+{% set otherProducts = otherProducts | randomOrder%}
+{% set otherProducts = otherProducts.slice(0, 6) %}
+
+<section>
+    <div class="container py-5">
+        <div class="row g-3 justify-content-center">
+            <h4 class="element-title text-center">Een greep uit onze collectie</h4>
+
+            {% for product in otherProducts %}
+                <div class="col-6 col-sm-4 col-md-2">
+                    <div class="insta-item">
+                        <a href="{{ product.url }}" title="{{ product.data.title }}">
+                            {% picture product.data.lifestyleImages[1] or product.data.lifestyleImages[0], product.data.title %}
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row justify-content-center">
+            <h2 class="section-title text-center mt-4">
+                Hoe werkt het?
+            </h2>
+            <div class="col-md-6 text-center">
                 <p>Zodra jouw bestelling is verwerkt, maken we de cadeaubon in orde.</p>
                 <p>In de meeste gevallen kun je de bon nog dezelfde dag <strong>ophalen in onze winkel (we kunnen ze niet digitaal versturen)</strong>.</p>
                 <p>Je ontvangt van ons een berichtje via WhatsApp of e-mail zodra de bon klaarligt.</p>
                 <p>Daarna kun je de bon eenvoudig afhalen in de winkel tijdens onze openingsuren of op afspraak.</p>
             </div>
         </div>
-
-        <div class="row">
-            {%- for card in site.giftCards -%}
-                <div class="col-md-3">
-                    <article class="post-item mb-4">
-                        <div class="post-image position-relative">
-                            {% picture "/images/cadeaubon/" + card.value + "EUR.jpg", "Cadeaubon van Lou-Marie fashion ter waarde van " + card.value | currency %}
-                        </div>
-                        <div class="post-content d-flex justify-content-center align-items-center flex-wrap gap-0 my-0">
-                                <a target="_blank"
-                                 href="{{ card.stripeButton }}"
-                                 class="btn btn-success text-uppercase mt-4 call-to-action"
-                                 onmouseup="onAddToCart('cadeaubon_{{ card.value }}', 'Cadeaubon {{ card.value }}', {{ card.value }});"
-                                 title="Bestel deze cadeaubon ter waarde van {{ card.value | currency }}">
-                                <svg width="25" height="25" viewBox="0 0 24 24">
-                                    <use xlink:href="#gift"></use>
-                                </svg>
-                                Bestel deze cadeaubon van {{ card.value | currency }}
-                            </a>
-                        </div>
-                    </article>
-                </div>
-            {%- endfor -%}
-        </div>
     </div>
 </section>
 
 <section>
     <div class="container">
-        <div class="row justify-content-center">
-            <h2 class="section-title text-center mt-4">
-                Vragen?
-            </h2>
+        <div class="row g-3 justify-content-center">
+            <h4 class="element-title text-center">Kies je cadeaubon</h4>
+
+                {%- for card in site.giftCards -%}
+                    <div class="col-md-3">
+                        <article class="post-item mb-4">
+                            <div class="post-image position-relative">
+                                {% picture "/images/cadeaubon/" + card.value + "EUR.jpg", "Cadeaubon van Lou-Marie fashion ter waarde van " + card.value | currency %}
+                            </div>
+                            <div class="post-content d-flex justify-content-center align-items-center flex-wrap gap-0 my-0">
+                                <a target="_blank"
+                                   href="{{ card.stripeButton }}"
+                                   class="btn btn-success text-uppercase mt-4 call-to-action"
+                                   onmouseup="onAddToCart('cadeaubon_{{ card.value }}', 'Cadeaubon {{ card.value }}', {{ card.value }});"
+                                   title="Bestel deze cadeaubon ter waarde van {{ card.value | currency }}">
+                                    <svg width="25" height="25" viewBox="0 0 24 24">
+                                        <use xlink:href="#gift"></use>
+                                    </svg>
+                                    Bestel deze cadeaubon van {{ card.value | currency }}
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                {%- endfor -%}
+            </div>
+        </div>
+</section>
+
+
+<section>
+    <div class="container py-5">
+        <div class="row g-3 justify-content-center">
+            <h4 class="element-title text-center">Vragen?</h4>
             <div class="col-md-6 text-center">
                 <p>
                     Heb je vragen of wil je iets aanpassen? Neem gerust contact met ons op, we helpen je graag verder!
@@ -79,3 +118,4 @@ hidePictureBanner: true
         </div>
     </div>
 </section>
+
