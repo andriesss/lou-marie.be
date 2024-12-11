@@ -30,7 +30,7 @@ hidePictureBanner: true
     <div class="container">
         <div class="row">
             <main class="post-list post-card-large col-md-8 offset-md-2">
-                {%- for post in collections.blog -%}
+                {%- for post in collections.blog | reverse -%}
                 <article class="post-item mb-5 pb-5">
                     <div class="post-image">
                         <a href="{{ post.url }}" title="Lees het artikel {{ post.data.title }}">
