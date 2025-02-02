@@ -27,7 +27,7 @@ hidePictureBanner: true
             </div>
         </div>
         <div class="row">
-            {%- for post in collections.products | randomOrder -%}
+            {%- for post in collections.products | reverse -%}
             <div class="col-md-4">
                 <article class="post-item">
                     <div class="post-image catalog-image position-relative">

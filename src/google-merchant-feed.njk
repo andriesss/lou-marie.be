@@ -21,7 +21,7 @@ eleventyExcludeFromCollections: true
             <g:title>{{ product.data.title }}</g:title>
             <g:description>{{ product.data.description }}</g:description>
             <g:link>https://lou-marie.be/kleding/{{ product.data.id }}/</g:link>
-            <g:image_link>https://lou-marie.be/images/products/{{ product.data.id }}/{{ product.data.id }}_1sq.jpg</g:image_link>
+            <g:image_link>https://lou-marie.be/images/products/{{ product.data.id }}/{{ product.data.id }}_1.jpg</g:image_link>
             {%- for image in product.data.lifestyleImages -%}
             <g:lifestyle_image_link>https://lou-marie.be{{ image }}</g:lifestyle_image_link>
             {%- endfor -%}
@@ -46,9 +46,6 @@ eleventyExcludeFromCollections: true
                 <g:price>6.50 EUR</g:price>
             </g:shipping>
             {% endif %}
-            {%- for image in product.data.lifestyleImages -%}
-                <g:additional_image_link>https://lou-marie.be{{ image }}</g:additional_image_link>
-            {%- endfor -%}
         </item>
         {%- endfor -%}
         {%- endfor -%}

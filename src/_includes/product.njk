@@ -67,8 +67,7 @@ hidePictureBanner: true
                         <p>&nbsp;</p>
                         <p class="shipping-info">Bestel je voor 16:00 uur op maandag t/m zaterdag? Dan sturen we je bestelling nog dezelfde dag op!</p>
                         {% if price < site.minimumOrderValueForFreeShipping %}
-                            <p class="shipping-cost">De verzendkosten zijn {{ site.shippingCost | currency }} voor bestellingen < {{ site.minimumOrderValueForFreeShipping | currency }}. Meerdere producten tegelijkertijd
-                                bestellen? Stuur een WhatsApp naar <a href="https://wa.me/32456890694">0456 890 694</a>
+                            <p class="shipping-cost">De verzendkosten zijn {{ site.shippingCost | currency }} voor bestellingen < {{ site.minimumOrderValueForFreeShipping | currency }}.
                             </p>
                         {% endif %}
                     </div>
@@ -124,7 +123,7 @@ hidePictureBanner: true
                     <div class="product-item image-zoom-effect link-effect">
                         <div class="image-holder">
                             <a href="/kleding/{{ product.data.id }}/" title="Bekijk {{ product.data.title }}">
-                                {% picture product.data.lifestyleImages[1] or product.data.lifestyleImages[0], product.data.title %}
+                                {% picture product.data.extraImages[1] or product.data.image, product.data.title %}
                             </a>
 
                             <div class="product-content">
