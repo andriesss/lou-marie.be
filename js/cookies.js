@@ -27,7 +27,7 @@ class GlowCookies {
     addCss() {
         const stylesheet = document.createElement('link');
         stylesheet.setAttribute('rel', 'stylesheet');
-        stylesheet.setAttribute('href', `/css/cookies.min.css`);
+        stylesheet.setAttribute('href', 'https://cdn.jsdelivr.net/gh/andriesss/lou-marie.be/css/cookies.min.css');
         document.head.appendChild(stylesheet);
     }
 
