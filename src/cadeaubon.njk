@@ -45,8 +45,8 @@ hidePictureBanner: true
             <h4 class="element-title text-center">Een greep uit onze collectie</h4>
 
             {% for product in otherProducts %}
-                <div class="col-6 col-sm-4 col-md-2">
-                    <div class="insta-item">
+                <div class="col-6 col-sm-4 col-md-2 py-4">
+                    <div class="insta-item banner-item image-zoom-effect">
                         <a href="{{ product.url }}" title="{{ product.data.title }}">
                             {% picture product.data.image, product.data.title %}
                         </a>
