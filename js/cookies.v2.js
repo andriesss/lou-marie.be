@@ -141,19 +141,19 @@ class GlowCookies {
         window.dispatchEvent(event);
     }
 
-    activateTracking() {
+        activateTracking() {
         // Google Analytics Tracking
-        if (this.tracking.AnalyticsCode) {
-            let Analytics = document.createElement('script');
-            Analytics.setAttribute('src', `https://www.googletagmanager.com/gtag/js?id=${this.tracking.AnalyticsCode}`);
-            document.head.appendChild(Analytics);
-            let AnalyticsData = document.createElement('script');
-            AnalyticsData.text = `window.dataLayer = window.dataLayer || [];
-                                function gtag(){dataLayer.push(arguments);}
-                                gtag('js', new Date());
-                                gtag('config', '${this.tracking.AnalyticsCode}');`;
-            document.head.appendChild(AnalyticsData);
-        }
+        // if (this.tracking.AnalyticsCode) {
+        //     let Analytics = document.createElement('script');
+        //     Analytics.setAttribute('src', `https://www.googletagmanager.com/gtag/js?id=${this.tracking.AnalyticsCode}`);
+        //     document.head.appendChild(Analytics);
+        //     let AnalyticsData = document.createElement('script');
+        //     AnalyticsData.text = `window.dataLayer = window.dataLayer || [];
+        //                         function gtag(){dataLayer.push(arguments);}
+        //                         gtag('js', new Date());
+        //                         gtag('config', '${this.tracking.AnalyticsCode}');`;
+        //     document.head.appendChild(AnalyticsData);
+        // }
 
         // Facebook pixel tracking code
         if (this.tracking.FacebookPixelCode) {
@@ -203,20 +203,20 @@ class GlowCookies {
 
     disableTracking() {
         // Google Analytics Tracking ('client_storage': 'none')
-        if (this.tracking.AnalyticsCode) {
-            let Analytics = document.createElement('script');
-            Analytics.setAttribute('src', `https://www.googletagmanager.com/gtag/js?id=${this.tracking.AnalyticsCode}`);
-            document.head.appendChild(Analytics);
-            let AnalyticsData = document.createElement('script');
-            AnalyticsData.text = `window.dataLayer = window.dataLayer || [];
-                        function gtag(){dataLayer.push(arguments);}
-                        gtag('js', new Date());
-                        gtag('config', '${this.tracking.AnalyticsCode}' , {
-                            'client_storage': 'none',
-                            'anonymize_ip': true
-                        });`;
-            document.head.appendChild(AnalyticsData);
-        }
+        // if (this.tracking.AnalyticsCode) {
+        //     let Analytics = document.createElement('script');
+        //     Analytics.setAttribute('src', `https://www.googletagmanager.com/gtag/js?id=${this.tracking.AnalyticsCode}`);
+        //     document.head.appendChild(Analytics);
+        //     let AnalyticsData = document.createElement('script');
+        //     AnalyticsData.text = `window.dataLayer = window.dataLayer || [];
+        //                 function gtag(){dataLayer.push(arguments);}
+        //                 gtag('js', new Date());
+        //                 gtag('config', '${this.tracking.AnalyticsCode}' , {
+        //                     'client_storage': 'none',
+        //                     'anonymize_ip': true
+        //                 });`;
+        //     document.head.appendChild(AnalyticsData);
+        // }
 
         // Clear cookies - not working 100%
         this.clearCookies()

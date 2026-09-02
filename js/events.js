@@ -87,18 +87,15 @@ function trackerLoaded() {
 
 function handleConsent(hasConsent) {
     hasCookieConsent = hasConsent;
-    if (!hasConsent) {
-        return;
-    }
 
-    console.info("Consent granted");
+    console.info(hasConsent ? "Consent granted" : "Consent denied");
     trackEvent("consent", hasConsent ? "grant" : "revoke");
 
     gtag('consent', 'update', {
-        'ad_user_data': 'denied',
-        'ad_personalization': 'denied',
-        'ad_storage': 'denied',
-        'analytics_storage': 'granted'
+        'ad_user_data': hasConsent ? 'granted' : 'denied',
+        'ad_personalization': hasConsent ? 'granted' : 'denied',
+        'ad_storage': hasConsent ? 'granted' : 'denied',
+        'analytics_storage': hasConsent ? 'granted' : 'denied'
     });
 
     function processGTagQueue() {
