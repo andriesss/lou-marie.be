@@ -35,14 +35,14 @@ jobs:
           if [ "${{ inputs.skip_prices }}" = "true" ]; then
             python3 tools/build_gmc_feed.py --no-prices
           else
-            python3 tools/build_gmc_feed.py
+            python3 tools/build_gmc_feed.py --no-cache
           fi
 
       - name: Committen als er iets gewijzigd is
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add gmc-feed.xml tools/.price-cache.json
+          git add gmc-feed.xml
           if git diff --staged --quiet; then
             echo "Geen wijzigingen in de feed."
           else

@@ -46,6 +46,7 @@ SOURCE_FEED = os.environ.get("GMC_SOURCE_FEED", "")
 
 OUTPUT_PATH = "gmc-feed.xml"
 CACHE_PATH = "tools/.price-cache.json"
+CACHE_MAX_AGE = 20 * 3600   # cache-items ouder dan 20 uur opnieuw ophalen
 
 FEED_TITLE = "Lou-Marie fashion | Tijdloze & betaalbare dameskleding"
 FEED_LINK = "https://www.lou-marie.be/nl"
@@ -306,8 +307,9 @@ def scrape_compare_price(url: str, cache: dict) -> float | None:
         <del class="... oe_compare_list_price"> ... 39,95 EUR </del>
     Staat die er niet, dan is er geen aanbieding en geven we None terug.
     """
-    if url in cache:
-        return cache[url]
+    entry = cache.get(url)
+    if isinstance(entry, dict) and time.time() - entry.get("ts", 0) < CACHE_MAX_AGE:
+        return entry.get("price")
     result = None
     try:
         page = fetch(url)
@@ -319,7 +321,7 @@ def scrape_compare_price(url: str, cache: dict) -> float | None:
     except (urllib.error.URLError, TimeoutError, OSError) as exc:
         print(f"  ! kon {url} niet ophalen: {exc}", file=sys.stderr)
         return None
-    cache[url] = result
+    cache[url] = {"price": result, "ts": time.time()}
     time.sleep(SCRAPE_DELAY)
     return result
 
@@ -501,6 +503,8 @@ def main() -> int:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--no-prices", action="store_true",
                     help="sla het ophalen van doorstreepprijzen over (veel sneller)")
+    ap.add_argument("--no-cache", action="store_true",
+                    help="prijscache negeren, alles opnieuw ophalen (CI gebruikt dit)")
     ap.add_argument("--report-only", action="store_true",
                     help="toon alleen de dekking, schrijf geen bestand")
     ap.add_argument("--source", default=SOURCE_FEED, help="bron-feed URL")
@@ -522,16 +526,19 @@ def main() -> int:
     print(f"{len(items)} items ingelezen", file=sys.stderr)
 
     cache = {}
-    if not args.no_prices and os.path.exists(CACHE_PATH):
-        with open(CACHE_PATH, encoding="utf-8") as fh:
-            cache = json.load(fh)
+    if not args.no_prices and not args.no_cache and os.path.exists(CACHE_PATH):
+        try:
+            with open(CACHE_PATH, encoding="utf-8") as fh:
+                cache = json.load(fh)
+        except (OSError, ValueError):
+            cache = {}
 
     if not args.no_prices:
         print("Doorstreepprijzen ophalen van de productpagina's...", file=sys.stderr)
 
     items = enrich(items, with_prices=not args.no_prices, cache=cache)
 
-    if not args.no_prices:
+    if not args.no_prices and not args.no_cache:
         os.makedirs(os.path.dirname(CACHE_PATH), exist_ok=True)
         with open(CACHE_PATH, "w", encoding="utf-8") as fh:
             json.dump(cache, fh, indent=1, sort_keys=True)
