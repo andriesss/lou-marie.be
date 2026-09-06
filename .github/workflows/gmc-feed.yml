@@ -1,0 +1,51 @@
+name: Bouw GMC-productfeed
+
+on:
+  schedule:
+    # elke dag om 05:20 UTC, ruim voor Google's ophaalmoment
+    - cron: "20 5 * * *"
+  workflow_dispatch:
+    inputs:
+      skip_prices:
+        description: "Doorstreepprijzen niet ophalen (veel sneller)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gmc-feed
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Feed bouwen
+        env:
+          GMC_SOURCE_FEED: ${{ secrets.GMC_SOURCE_FEED }}
+        run: |
+          if [ "${{ inputs.skip_prices }}" = "true" ]; then
+            python3 tools/build_gmc_feed.py --no-prices
+          else
+            python3 tools/build_gmc_feed.py
+          fi
+
+      - name: Committen als er iets gewijzigd is
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add gmc-feed.xml tools/.price-cache.json
+          if git diff --staged --quiet; then
+            echo "Geen wijzigingen in de feed."
+          else
+            git commit -m "feed: automatische update $(date -u +%Y-%m-%d)"
+            git push
+          fi
