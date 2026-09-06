@@ -22,11 +22,13 @@ Alleen standaardbibliotheek, zodat het ook in GitHub Actions draait zonder pip i
 from __future__ import annotations
 
 import argparse
+import concurrent.futures
 import html
 import json
 import os
 import re
 import sys
+import threading
 import time
 import urllib.error
 import urllib.request
@@ -62,7 +64,8 @@ AGE_GROUP = "adult"
 CONDITION = "new"
 
 HTTP_TIMEOUT = 30
-SCRAPE_DELAY = 0.4       # seconden tussen productpagina's, wees beleefd
+SCRAPE_WORKERS = 6       # gelijktijdige verbindingen naar de webshop
+SCRAPE_DELAY = 0.15      # pauze per worker na elk verzoek, wees beleefd
 USER_AGENT = "lou-marie-feed-builder/1.0 (+https://github.com/andriesss/lou-marie.be)"
 
 # --- Google producttaxonomie -----------------------------------------------
@@ -301,29 +304,68 @@ COMPARE_RE = re.compile(
 CURRENCY_RE = re.compile(r'oe_currency_value"[^>]*>([\d.,]+)')
 
 
-def scrape_compare_price(url: str, cache: dict) -> float | None:
+def scrape_compare_price(url: str) -> float | None:
     """
     Odoo toont een doorstreepprijs als 'Vergelijkingsprijs' is ingevuld:
         <del class="... oe_compare_list_price"> ... 39,95 EUR </del>
     Staat die er niet, dan is er geen aanbieding en geven we None terug.
     """
-    entry = cache.get(url)
-    if isinstance(entry, dict) and time.time() - entry.get("ts", 0) < CACHE_MAX_AGE:
-        return entry.get("price")
-    result = None
     try:
         page = fetch(url)
-        m = COMPARE_RE.search(page)
-        if m:
-            v = CURRENCY_RE.search(m.group(1))
-            if v:
-                result = to_float(v.group(1))
     except (urllib.error.URLError, TimeoutError, OSError) as exc:
         print(f"  ! kon {url} niet ophalen: {exc}", file=sys.stderr)
         return None
-    cache[url] = {"price": result, "ts": time.time()}
-    time.sleep(SCRAPE_DELAY)
-    return result
+    finally:
+        if SCRAPE_DELAY:
+            time.sleep(SCRAPE_DELAY)
+    m = COMPARE_RE.search(page)
+    if not m:
+        return None
+    v = CURRENCY_RE.search(m.group(1))
+    return to_float(v.group(1)) if v else None
+
+
+def scrape_all(urls: list[str], cache: dict) -> dict[str, float | None]:
+    """
+    Haalt alle productpagina's parallel op met een kleine pool threads.
+    urllib blokkeert per verzoek, dus threads volstaan; geen async nodig.
+    Cache-treffers die nog vers zijn worden overgeslagen.
+    """
+    prices: dict[str, float | None] = {}
+    todo = []
+    now = time.time()
+    for url in dict.fromkeys(urls):          # dedupliceren, volgorde behouden
+        entry = cache.get(url)
+        if isinstance(entry, dict) and now - entry.get("ts", 0) < CACHE_MAX_AGE:
+            prices[url] = entry.get("price")
+        else:
+            todo.append(url)
+
+    if prices:
+        print(f"  {len(prices)} uit cache", file=sys.stderr)
+    if not todo:
+        return prices
+
+    print(f"  {len(todo)} ophalen met {SCRAPE_WORKERS} gelijktijdige verbindingen",
+          file=sys.stderr)
+    lock = threading.Lock()
+    done = 0
+    with concurrent.futures.ThreadPoolExecutor(max_workers=SCRAPE_WORKERS) as pool:
+        futures = {pool.submit(scrape_compare_price, u): u for u in todo}
+        for fut in concurrent.futures.as_completed(futures):
+            url = futures[fut]
+            try:
+                price = fut.result()
+            except Exception as exc:                       # noqa: BLE001
+                print(f"  ! {url}: {exc}", file=sys.stderr)
+                price = None
+            with lock:
+                prices[url] = price
+                cache[url] = {"price": price, "ts": time.time()}
+                done += 1
+                if done % 25 == 0 or done == len(todo):
+                    print(f"    {done}/{len(todo)}", file=sys.stderr)
+    return prices
 
 
 # ---------------------------------------------------------------------------
@@ -423,8 +465,11 @@ def parse_source(xml: str) -> list[dict]:
 
 
 def enrich(items: list[dict], with_prices: bool, cache: dict) -> list[dict]:
-    total = len(items)
-    for n, it in enumerate(items, 1):
+    prices: dict[str, float | None] = {}
+    if with_prices:
+        prices = scrape_all([it["link"] for it in items if it["link"]], cache)
+
+    for it in items:
         title = it["title"].strip()
         it["title"] = title
         desc = it["description"]
@@ -433,8 +478,7 @@ def enrich(items: list[dict], with_prices: bool, cache: dict) -> list[dict]:
         it["price"] = f"{current:.2f} EUR" if current is not None else it["price_raw"]
 
         if with_prices and it["link"]:
-            print(f"  [{n}/{total}] {title[:52]}", file=sys.stderr)
-            compare = scrape_compare_price(it["link"], cache)
+            compare = prices.get(it["link"])
             if compare and current and compare > current:
                 it["price"] = f"{compare:.2f} EUR"
                 it["sale_price"] = f"{current:.2f} EUR"
