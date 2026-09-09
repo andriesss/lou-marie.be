@@ -58,7 +58,13 @@ FEED_DESCRIPTION = (
 )
 
 # Vaststaande waarden. Deze zijn bevestigd door de eigenaar, geen gok.
-BRAND = ""               # bewust leeg: geen eigen merk. Vul in als dat verandert.
+# Merk per product komt uit een Odoo-attribuut met deze naam. Maak dat attribuut
+# aan met Variant Creation = "Never", anders maakt Odoo er varianten van.
+# Let op: die instelling kan niet meer gewijzigd worden zodra het attribuut in
+# gebruik is op een product, dus zet hem meteen goed.
+STORE_CODE = "LOU-MARIE"
+BRAND_ATTRIBUTE = "Merk"
+BRAND_FALLBACK = ""      # gebruikt als een product geen merkattribuut heeft
 GENDER = "female"        # de hele winkel is dameskleding
 AGE_GROUP = "adult"
 CONDITION = "new"
@@ -262,6 +268,14 @@ def derive_color(title: str, description: str) -> str:
     return find_term(COLORS, title, description)
 
 
+def derive_brand(details: list[tuple[str, str]]) -> str:
+    """Merk uit het Odoo-attribuut, anders de fallback (mag leeg zijn)."""
+    for name, value in details:
+        if name.strip().lower() == BRAND_ATTRIBUTE.lower() and value.strip():
+            return value.strip()
+    return BRAND_FALLBACK
+
+
 def derive_size(details: list[tuple[str, str]], title: str) -> str:
     for name, value in details:
         if name.strip().lower() == "maat" and value.strip():
@@ -415,8 +429,8 @@ def build(items: list[dict]) -> str:
         out.append(el("price", it["price"]))
         if it.get("sale_price"):
             out.append(el("sale_price", it["sale_price"]))
-        if BRAND:
-            out.append(el("brand", BRAND))
+        if it.get("brand"):
+            out.append(el("brand", it["brand"]))
         out.append(el("condition", CONDITION))
         out.append(el("gender", GENDER))
         out.append(el("age_group", AGE_GROUP))
@@ -483,6 +497,7 @@ def enrich(items: list[dict], with_prices: bool, cache: dict) -> list[dict]:
                 it["price"] = f"{compare:.2f} EUR"
                 it["sale_price"] = f"{current:.2f} EUR"
 
+        it["brand"] = derive_brand(it["details"])
         it["color"] = derive_color(title, desc)
         size = derive_size(it["details"], title)
         it["size"] = size
@@ -506,7 +521,7 @@ def enrich(items: list[dict], with_prices: bool, cache: dict) -> list[dict]:
 
 def report(items: list[dict], taxonomy: set[str] | None) -> None:
     total = len(items)
-    fields = ["color", "size", "size_system", "material", "pattern",
+    fields = ["brand", "color", "size", "size_system", "material", "pattern",
               "google_product_category", "sale_price"]
     print("\nDekking per veld")
     print("-" * 46)
@@ -522,6 +537,13 @@ def report(items: list[dict], taxonomy: set[str] | None) -> None:
             print(f"  {it['id']:<5} {it['title'][:60]}")
         if len(missing_color) > 15:
             print(f"  ... en {len(missing_color) - 15} meer")
+
+    no_brand = [it for it in items if not it.get("brand")]
+    if no_brand:
+        msg = (f"{len(no_brand)} items zonder merk. Vul het attribuut "
+               f"'{BRAND_ATTRIBUTE}' in Odoo in (Variant Creation = Never).")
+        print("\n" + msg)
+        gh_warning(msg)
 
     no_cat = [it for it in items if not it.get("google_product_category")]
     if no_cat:
