@@ -1,4 +1,4 @@
-name: Bouw GMC-productfeed
+name: Bouw product-feeds (Google + Facebook)
 
 on:
   schedule:
@@ -38,11 +38,14 @@ jobs:
             python3 tools/build_gmc_feed.py --no-cache
           fi
 
+      - name: Facebook-feed afleiden uit de Google-feed
+        run: python3 tools/build_facebook_feed.py
+
       - name: Committen als er iets gewijzigd is
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add gmc-feed.xml
+          git add gmc-feed.xml facebook-feed.csv
           if git diff --staged --quiet; then
             echo "Geen wijzigingen in de feed."
           else
