@@ -194,6 +194,14 @@ PRICE_BUCKET_TOP = "vanaf 55"
 # HULPFUNCTIES
 # ---------------------------------------------------------------------------
 
+def gh_warning(message: str) -> None:
+    """Stuur een waarschuwing naar het GitHub Actions-logboek; buiten Actions een no-op."""
+    if os.environ.get("GITHUB_ACTIONS") != "true":
+        return
+    clean = message.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+    print(f"::warning::{clean}")
+
+
 def fetch(url: str) -> str:
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     with urllib.request.urlopen(req, timeout=HTTP_TIMEOUT) as resp:
