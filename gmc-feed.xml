@@ -9,7 +9,7 @@
       <g:title>Beige kort jasje suèdine</g:title>
       <g:description></g:description>
       <g:link>https://www.lou-marie.be/nl/shop/beige-kort-jasje-suedine-191?attribute_values=9</g:link>
-      <g:image_link>https://www.lou-marie.be/web/image/product.product/362/image_1920?unique=c8b95da</g:image_link>
+      <g:image_link>https://www.lou-marie.be/web/image/product.product/362/image_1920?unique=9a053dc</g:image_link>
       <g:additional_image_link>https://www.lou-marie.be/web/image/product.image/278/image_1920?unique=0171de7</g:additional_image_link>
       <g:availability>in_stock</g:availability>
       <g:price>44.95 EUR</g:price>
@@ -345,6 +345,27 @@
       <g:custom_label_1>25 tot 40</g:custom_label_1>
       <g:custom_label_2>Broeken, shorts en rokken</g:custom_label_2>
       <g:custom_label_3>aanbieding</g:custom_label_3>
+    </item>
+    <item>
+      <g:id>363</g:id>
+      <g:title>Bruine stretchbroek met koordsluiting</g:title>
+      <g:description></g:description>
+      <g:link>https://www.lou-marie.be/nl/shop/bruine-stretchbroek-met-koordsluiting-192?attribute_values=2</g:link>
+      <g:image_link>https://www.lou-marie.be/web/image/product.product/363/image_1920?unique=ee38a99</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>59.95 EUR</g:price>
+      <g:condition>new</g:condition>
+      <g:gender>female</g:gender>
+      <g:age_group>adult</g:age_group>
+      <g:google_product_category>Apparel &amp; Accessories &gt; Clothing &gt; Pants</g:google_product_category>
+      <g:color>bruin</g:color>
+      <g:size>M</g:size>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Broeken, shorts en rokken</g:product_type>
+      <g:custom_label_0>Herfst/Winter 2026</g:custom_label_0>
+      <g:custom_label_1>vanaf 55</g:custom_label_1>
+      <g:custom_label_2>Broeken, shorts en rokken</g:custom_label_2>
+      <g:custom_label_4>nieuw</g:custom_label_4>
     </item>
     <item>
       <g:id>295</g:id>
