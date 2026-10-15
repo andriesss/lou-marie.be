@@ -637,6 +637,28 @@
       <g:custom_label_3>aanbieding</g:custom_label_3>
     </item>
     <item>
+      <g:id>365</g:id>
+      <g:title>Gebreid ecru vest knopen</g:title>
+      <g:description></g:description>
+      <g:link>https://www.lou-marie.be/nl/shop/gebreid-ecru-vest-knopen-194?attribute_values=9</g:link>
+      <g:image_link>https://www.lou-marie.be/web/image/product.product/365/image_1920?unique=7d921ea</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>49.95 EUR</g:price>
+      <g:condition>new</g:condition>
+      <g:gender>female</g:gender>
+      <g:age_group>adult</g:age_group>
+      <g:google_product_category>Apparel &amp; Accessories &gt; Clothing &gt; Shirts &amp; Tops</g:google_product_category>
+      <g:color>ecru</g:color>
+      <g:size>one size</g:size>
+      <g:material>gebreid</g:material>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Truien en vesten</g:product_type>
+      <g:custom_label_0>Herfst/Winter 2026</g:custom_label_0>
+      <g:custom_label_1>40 tot 55</g:custom_label_1>
+      <g:custom_label_2>Truien en vesten</g:custom_label_2>
+      <g:custom_label_4>nieuw</g:custom_label_4>
+    </item>
+    <item>
       <g:id>355</g:id>
       <g:title>Gebreid gilet met knopen, beige</g:title>
       <g:description>Beige gebreid gilet met opstaande kraag, grote overtrokken knopen en korte wijde mouwen met knoopdetail. Valt soepel in een mooie A-lijn en past bij zowat alles in je kast.</g:description>
@@ -2957,6 +2979,75 @@
       <g:custom_label_3>aanbieding</g:custom_label_3>
     </item>
     <item>
+      <g:id>366</g:id>
+      <g:title>Witte kanten blouse (S)</g:title>
+      <g:description></g:description>
+      <g:link>https://www.lou-marie.be/nl/shop/witte-kanten-blouse-195?attribute_values=1</g:link>
+      <g:image_link>https://www.lou-marie.be/web/image/product.product/366/image_1920?unique=789e28f</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>39.95 EUR</g:price>
+      <g:condition>new</g:condition>
+      <g:gender>female</g:gender>
+      <g:age_group>adult</g:age_group>
+      <g:google_product_category>Apparel &amp; Accessories &gt; Clothing &gt; Shirts &amp; Tops</g:google_product_category>
+      <g:color>wit</g:color>
+      <g:size>S</g:size>
+      <g:material>kant</g:material>
+      <g:item_group_id>195</g:item_group_id>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Blouses en tops</g:product_type>
+      <g:custom_label_0>Herfst/Winter 2026</g:custom_label_0>
+      <g:custom_label_1>25 tot 40</g:custom_label_1>
+      <g:custom_label_2>Blouses en tops</g:custom_label_2>
+      <g:custom_label_4>nieuw</g:custom_label_4>
+    </item>
+    <item>
+      <g:id>367</g:id>
+      <g:title>Witte kanten blouse (M)</g:title>
+      <g:description></g:description>
+      <g:link>https://www.lou-marie.be/nl/shop/witte-kanten-blouse-195?attribute_values=2</g:link>
+      <g:image_link>https://www.lou-marie.be/web/image/product.product/367/image_1920?unique=789e28f</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>39.95 EUR</g:price>
+      <g:condition>new</g:condition>
+      <g:gender>female</g:gender>
+      <g:age_group>adult</g:age_group>
+      <g:google_product_category>Apparel &amp; Accessories &gt; Clothing &gt; Shirts &amp; Tops</g:google_product_category>
+      <g:color>wit</g:color>
+      <g:size>M</g:size>
+      <g:material>kant</g:material>
+      <g:item_group_id>195</g:item_group_id>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Blouses en tops</g:product_type>
+      <g:custom_label_0>Herfst/Winter 2026</g:custom_label_0>
+      <g:custom_label_1>25 tot 40</g:custom_label_1>
+      <g:custom_label_2>Blouses en tops</g:custom_label_2>
+      <g:custom_label_4>nieuw</g:custom_label_4>
+    </item>
+    <item>
+      <g:id>368</g:id>
+      <g:title>Witte kanten blouse (L)</g:title>
+      <g:description></g:description>
+      <g:link>https://www.lou-marie.be/nl/shop/witte-kanten-blouse-195?attribute_values=3</g:link>
+      <g:image_link>https://www.lou-marie.be/web/image/product.product/368/image_1920?unique=789e28f</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>39.95 EUR</g:price>
+      <g:condition>new</g:condition>
+      <g:gender>female</g:gender>
+      <g:age_group>adult</g:age_group>
+      <g:google_product_category>Apparel &amp; Accessories &gt; Clothing &gt; Shirts &amp; Tops</g:google_product_category>
+      <g:color>wit</g:color>
+      <g:size>L</g:size>
+      <g:material>kant</g:material>
+      <g:item_group_id>195</g:item_group_id>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Blouses en tops</g:product_type>
+      <g:custom_label_0>Herfst/Winter 2026</g:custom_label_0>
+      <g:custom_label_1>25 tot 40</g:custom_label_1>
+      <g:custom_label_2>Blouses en tops</g:custom_label_2>
+      <g:custom_label_4>nieuw</g:custom_label_4>
+    </item>
+    <item>
       <g:id>288</g:id>
       <g:title>Witte sjaal print</g:title>
       <g:description>Superzachte sjaal in ecruwit met print. Een elegant accessoire dat bij zowat elke jas en trui past.</g:description>
@@ -3023,6 +3114,27 @@
       <g:custom_label_1>25 tot 40</g:custom_label_1>
       <g:custom_label_2>Truien en vesten</g:custom_label_2>
       <g:custom_label_3>aanbieding</g:custom_label_3>
+    </item>
+    <item>
+      <g:id>369</g:id>
+      <g:title>Witte trui sjaal</g:title>
+      <g:description></g:description>
+      <g:link>https://www.lou-marie.be/nl/shop/witte-trui-sjaal-196?attribute_values=9</g:link>
+      <g:image_link>https://www.lou-marie.be/web/image/product.product/369/image_1920?unique=e513887</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>49.95 EUR</g:price>
+      <g:condition>new</g:condition>
+      <g:gender>female</g:gender>
+      <g:age_group>adult</g:age_group>
+      <g:google_product_category>Apparel &amp; Accessories &gt; Clothing &gt; Shirts &amp; Tops</g:google_product_category>
+      <g:color>wit</g:color>
+      <g:size>one size</g:size>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Truien en vesten</g:product_type>
+      <g:custom_label_0>Herfst/Winter 2026</g:custom_label_0>
+      <g:custom_label_1>40 tot 55</g:custom_label_1>
+      <g:custom_label_2>Truien en vesten</g:custom_label_2>
+      <g:custom_label_4>nieuw</g:custom_label_4>
     </item>
     <item>
       <g:id>205</g:id>
