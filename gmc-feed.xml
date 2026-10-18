@@ -641,7 +641,11 @@
       <g:title>Gebreid ecru vest knopen</g:title>
       <g:description></g:description>
       <g:link>https://www.lou-marie.be/nl/shop/gebreid-ecru-vest-knopen-194?attribute_values=9</g:link>
-      <g:image_link>https://www.lou-marie.be/web/image/product.product/365/image_1920?unique=7c65c5b</g:image_link>
+      <g:image_link>https://www.lou-marie.be/web/image/product.product/365/image_1920?unique=06a2ccc</g:image_link>
+      <g:additional_image_link>https://www.lou-marie.be/web/image/product.image/281/image_1920?unique=06a2ccc</g:additional_image_link>
+      <g:additional_image_link>https://www.lou-marie.be/web/image/product.image/282/image_1920?unique=06a2ccc</g:additional_image_link>
+      <g:additional_image_link>https://www.lou-marie.be/web/image/product.image/283/image_1920?unique=06a2ccc</g:additional_image_link>
+      <g:additional_image_link>https://www.lou-marie.be/web/image/product.image/284/image_1920?unique=06a2ccc</g:additional_image_link>
       <g:availability>in_stock</g:availability>
       <g:price>54.95 EUR</g:price>
       <g:condition>new</g:condition>
@@ -2501,6 +2505,29 @@
       <g:custom_label_1>25 tot 40</g:custom_label_1>
       <g:custom_label_2>Truien en vesten</g:custom_label_2>
       <g:custom_label_3>aanbieding</g:custom_label_3>
+    </item>
+    <item>
+      <g:id>370</g:id>
+      <g:title>Taupe trui sjaal</g:title>
+      <g:description></g:description>
+      <g:link>https://www.lou-marie.be/nl/shop/taupe-trui-sjaal-197?attribute_values=9</g:link>
+      <g:image_link>https://www.lou-marie.be/web/image/product.product/370/image_1920?unique=681fdc3</g:image_link>
+      <g:additional_image_link>https://www.lou-marie.be/web/image/product.image/279/image_1920?unique=5523337</g:additional_image_link>
+      <g:additional_image_link>https://www.lou-marie.be/web/image/product.image/280/image_1920?unique=5523337</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>49.95 EUR</g:price>
+      <g:condition>new</g:condition>
+      <g:gender>female</g:gender>
+      <g:age_group>adult</g:age_group>
+      <g:google_product_category>Apparel &amp; Accessories &gt; Clothing &gt; Shirts &amp; Tops</g:google_product_category>
+      <g:color>taupe</g:color>
+      <g:size>one size</g:size>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Truien en vesten</g:product_type>
+      <g:custom_label_0>Herfst/Winter 2026</g:custom_label_0>
+      <g:custom_label_1>40 tot 55</g:custom_label_1>
+      <g:custom_label_2>Truien en vesten</g:custom_label_2>
+      <g:custom_label_4>nieuw</g:custom_label_4>
     </item>
     <item>
       <g:id>34</g:id>
